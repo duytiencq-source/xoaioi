@@ -52,7 +52,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
 /* CONCEPTS */
 .grid{padding:20px 44px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
 .card{background:#fff;border:0.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s;}
-.card:hover{transform:translateY(-3px);}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,119,107,0.15);border-color:var(--rose-mid);}
 .card-thumb{height:148px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .card-thumb span{position:relative;z-index:1;font-size:30px;}
 .gal-dot{position:absolute;inset:0;opacity:.08;background-image:radial-gradient(circle,var(--rose) 1px,transparent 1px);background-size:14px 14px;}
@@ -63,7 +63,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
 .card-tag{font-size:11px;font-weight:300;color:var(--ink-soft);font-style:italic;line-height:1.65;}
 .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:0.5px solid var(--border-soft);}
 .card-price{font-size:11px;color:var(--rose);font-weight:600;}
-.card-open{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--rose);font-weight:500;border:0.5px solid var(--rose-mid);background:transparent;padding:5px 12px;border-radius:14px;cursor:pointer;transition:background .2s;}
+.card-open{font-size:10px;color:var(--rose);font-weight:500;border:0.5px solid var(--rose-mid);background:transparent;padding:5px 12px;border-radius:14px;pointer-events:none;}
 .card-open:hover{background:var(--rose-light);}
 
 /* CONTACT */
@@ -215,13 +215,8 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
     width:100%;
   }
   .form-head{padding:20px 20px 14px;position:relative;}
-  .form-close-mobile{
-    position:absolute;top:14px;right:14px;
-    width:28px;height:28px;border-radius:50%;
-    background:rgba(255,255,255,0.25);border:none;
-    color:#fff;font-size:14px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-  }
+  .form-close-mobile{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.6);color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.15s;}
+  .form-close-mobile:hover{background:#fff;}
   .form-head h3{font-size:16px;padding-right:32px;}
   .form-body{padding:16px 18px;}
   .form-grid{grid-template-columns:1fr;}
@@ -262,8 +257,27 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
 }
 
 /* Masonry Gallery */
-.masonry-gallery{
+.masonry-wrap{
   width:900px;max-width:calc(100% - 32px);margin:22px auto 44px;
+}
+.masonry-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.masonry-nav-info{
+  font-size:11px;font-weight:500;color:var(--ink-soft);letter-spacing:0.5px;
+}
+.masonry-nav-btns{display:flex;gap:8px;}
+.mas-nav-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:#fff;border:0.5px solid var(--border);
+  color:var(--rose);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.15s;font-family:sans-serif;
+}
+.mas-nav-btn:hover{background:var(--rose-light);}
+.mas-nav-btn:disabled{opacity:0.35;cursor:default;}
+.masonry-gallery{
   columns:3;column-gap:12px;
 }
 .mas-item{
@@ -273,26 +287,53 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
   transition:transform 0.2s;
 }
 .mas-item:hover{transform:scale(1.015);}
-.mas-item img{
-  display:block;width:100%;height:auto;
-}
+.mas-item img{display:block;width:100%;height:auto;}
 .mas-badge{
   position:absolute;bottom:0;left:0;right:0;
   background:linear-gradient(transparent,rgba(44,24,16,0.6));
-  color:#fff;text-align:center;
-  padding:22px 10px 10px;
+  color:#fff;text-align:center;padding:22px 10px 10px;
   font-family:'Montserrat',sans-serif;font-size:10px;
   letter-spacing:2px;text-transform:uppercase;font-weight:600;
   opacity:0;transition:opacity 0.2s;pointer-events:none;
 }
 .mas-item:hover .mas-badge{opacity:1;}
+.mas-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}
+.mas-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--rose-mid);cursor:pointer;transition:background 0.2s,transform 0.2s;
+}
+.mas-dot.active{background:var(--rose);transform:scale(1.3);}
 @media(max-width:700px){
-  .masonry-gallery{columns:2;column-gap:8px;width:calc(100% - 24px);}
+  .masonry-wrap{width:calc(100% - 24px);}
+  
   .mas-item{margin-bottom:8px;border-radius:8px;}
 }
 @media(max-width:400px){
-  .masonry-gallery{columns:2;column-gap:6px;}
+  
 }
+
+
+.gallery-filter-tabs{display:flex;flex-wrap:wrap;gap:8px;width:900px;max-width:calc(100% - 32px);margin:0 auto 20px;}
+.gal-tab{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border-radius:30px;border:1px solid var(--border);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all 0.18s;}
+.gal-tab:hover{background:var(--rose-light);color:var(--rose);border-color:var(--rose-mid);}
+.gal-tab.active{background:var(--rose);color:#fff;border-color:var(--rose);}
+.masonry-wrap{width:900px;max-width:calc(100% - 32px);margin:0 auto 44px;}
+.masonry-gallery{columns:3;column-gap:10px;min-height:100px;}
+.masonry-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 0 6px;}
+.mas-nav-btn{width:36px;height:36px;border-radius:50%;background:#fff;border:0.5px solid var(--border);color:var(--rose);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.mas-nav-btn:hover:not(:disabled){background:var(--rose-light);}
+.mas-nav-btn:disabled{opacity:0.35;cursor:default;}
+.masonry-nav-info{font-size:11px;font-weight:500;color:var(--ink-muted);letter-spacing:0.5px;}
+.mas-dots{display:flex;justify-content:center;gap:6px;padding:4px 0 0;}
+.mas-dot{width:7px;height:7px;border-radius:50%;background:var(--rose-mid);cursor:pointer;transition:background 0.2s;}
+.mas-dot.active{background:var(--rose);}
+.mas-item{break-inside:avoid;margin-bottom:10px;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.2s;}
+.mas-item:hover{transform:scale(1.015);}
+.mas-item img{display:block;width:100%;height:auto;}
+.mas-badge{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(44,24,16,0.6));color:#fff;text-align:center;padding:22px 10px 10px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.mas-item:hover .mas-badge{opacity:1;}
+.gal-empty{text-align:center;padding:48px 20px;color:var(--ink-muted);font-size:13px;font-weight:300;}
+@media(max-width:700px){.masonry-gallery{columns:2;column-gap:8px;}.gallery-filter-tabs{gap:6px;}.gal-tab{font-size:10px;padding:6px 12px;}}
 
 </style>
 </head>
@@ -319,7 +360,23 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
 
 <!-- GALLERY -->
 <div class="sec-hdr"><h2>Thư viện ảnh studio</h2><span>Story Baby — Đà Lạt</span></div>
-<div class="masonry-gallery" id="masonryGallery"></div>
+<div class="gallery-filter-tabs">
+  <button class="gal-tab active" onclick="switchGalTab(this,'all')">Tất cả</button>
+  <button class="gal-tab" onclick="switchGalTab(this,'newborn')">🌸 NewBorn</button>
+  <button class="gal-tab" onclick="switchGalTab(this,'birthday')">🎂 Birthday</button>
+  <button class="gal-tab" onclick="switchGalTab(this,'family')">🏡 Gia đình</button>
+  <button class="gal-tab" onclick="switchGalTab(this,'kyyeu')">🎓 Kỷ yếu</button>
+  <button class="gal-tab" onclick="switchGalTab(this,'maternity')">🌷 Mẹ bầu</button>
+</div>
+<div class="masonry-wrap">
+  <div class="masonry-gallery" id="masonryGallery"></div>
+  <div class="masonry-nav" id="masNav">
+    <button class="mas-nav-btn" id="galPrev" onclick="galPage(-1)" disabled>&#8249;</button>
+    <span class="masonry-nav-info" id="galPageInfo"></span>
+    <button class="mas-nav-btn" id="galNext" onclick="galPage(1)">&#8250;</button>
+  </div>
+  <div class="mas-dots" id="galDots"></div>
+</div>
 
 <!-- CONCEPTS -->
 <div class="sec-hdr"><h2>Các concept</h2><span>Chọn câu chuyện của bạn</span></div>
@@ -398,6 +455,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink
 </div>
 
 <script>
+
 // Story Baby Studio — Image Assets
 // Auto-generated — do not edit manually
 
@@ -422,28 +480,89 @@ const concepts=[
 const sym=['✿','❋','✦','◇','❀','✾','◈','❃','✧','❁','◉','✺'];
 
 // Build gallery with real images
-function buildGallery(){
+function buildGallery(imgs, tabName){
+  imgs = imgs || GALLERY_IMGS;
+  tabName = tabName || 'all';
   var container=document.getElementById('masonryGallery');
   if(!container) return;
-  var names={'newborn':'NewBorn','birthday':'Birthday','family':'Gia đình','kyyeu':'Kỷ yếu','maternity':'Mẹ bầu'};
-  GALLERY_IMGS.forEach(function(item,idx){
-    var src=typeof item==='string'?item:(item.src||'');
-    var conceptId=GALLERY_CONCEPT_MAP[idx]||null;
-    var d=document.createElement('div');
-    d.className='mas-item';
-    var img=document.createElement('img');
-    img.src=src;
-    img.loading='lazy';
-    d.appendChild(img);
-    if(conceptId){
-      var badge=document.createElement('div');
-      badge.className='mas-badge';
-      badge.textContent=names[conceptId]||'';
-      d.appendChild(badge);
-      d.addEventListener('click',function(){ openConcept(conceptId); });
+  var PER_PAGE=10;
+  var currentPage=0;
+  var names={'newborn':'NewBorn','birthday':'Birthday','family':'Gia \u0111\u00ecnh','kyyeu':'K\u1ef7 y\u1ebfu','maternity':'M\u1eb9 b\u1ea7u'};
+
+  function totalPages(){ return Math.max(1,Math.ceil(imgs.length/PER_PAGE)); }
+
+  function render(page){
+    container.innerHTML='';
+    if(!imgs.length){
+      container.innerHTML='<div class="gal-empty">Ch\u01b0a c\u00f3 \u1ea3nh trong m\u1ee5c n\u00e0y</div>';
+      updateNav(page);return;
     }
-    container.appendChild(d);
-  });
+    var start=page*PER_PAGE;
+    var slice=imgs.slice(start,start+PER_PAGE);
+    slice.forEach(function(item,i){
+      var idx=start+i;
+      var src=typeof item==='string'?item:(item.src||'');
+      var conceptId=(tabName==='all')?(GALLERY_CONCEPT_MAP[idx]||null):null;
+      var d=document.createElement('div');
+      d.className='mas-item';
+      var img=document.createElement('img');
+      img.src=src;img.loading='lazy';
+      d.appendChild(img);
+      if(conceptId){
+        var badge=document.createElement('div');
+        badge.className='mas-badge';
+        badge.textContent=names[conceptId]||'';
+        d.appendChild(badge);
+        d.addEventListener('click',function(){openConcept(conceptId);});
+      }
+      container.appendChild(d);
+    });
+    updateNav(page);
+  }
+
+  function updateNav(page){
+    var info=document.getElementById('galPageInfo');
+    var tp=totalPages();
+    if(info) info.textContent=(tp>1)?((page+1)+' / '+tp):(imgs.length+' \u1ea3nh');
+    var prev=document.getElementById('galPrev');
+    var next=document.getElementById('galNext');
+    if(prev) prev.disabled=(page===0);
+    if(next) next.disabled=(page>=tp-1);
+    var nav=document.getElementById('masNav');
+    if(nav) nav.style.display=(tp>1)?'flex':'none';
+    var dots=document.getElementById('galDots');
+    if(dots){
+      dots.innerHTML='';
+      if(tp>1){
+        for(var p=0;p<tp;p++){
+          var dot=document.createElement('div');
+          dot.className='mas-dot'+(p===page?' active':'');
+          (function(pp){dot.addEventListener('click',function(){currentPage=pp;render(pp);});})(p);
+          dots.appendChild(dot);
+        }
+      }
+    }
+  }
+
+  window.galPage=function(dir){
+    currentPage=Math.max(0,Math.min(currentPage+dir,totalPages()-1));
+    render(currentPage);
+    document.getElementById('masonryGallery').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+
+  render(0);
+}
+
+var galCurrentTab='all';
+function switchGalTab(btn,tab){
+  document.querySelectorAll('.gal-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  galCurrentTab=tab;
+  buildGallery(getGalImgs(tab),tab);
+}
+function getGalImgs(tab){
+  if(tab==='all') return GALLERY_IMGS;
+  return GALLERY_IMGS.filter(function(_,i){return GALLERY_CONCEPT_MAP[i]===tab;});
 }
 
 
@@ -453,11 +572,22 @@ function buildCards(){
   concepts.forEach(function(c){
     var d=document.createElement('div');
     d.className='card';
+    d.style.cursor='pointer';
     var thumbSrc=THUMB_IMGS[c.id]||'';
     var thumbHtml=thumbSrc
       ?'<div class="card-thumb" style="background:none;"><img src="'+thumbSrc+'" style="width:100%;height:148px;object-fit:cover;display:block;"></div>'
       :'<div class="card-thumb '+c.thumb+'"><div class="gal-dot"></div><span>'+c.emoji+'</span></div>';
-    d.innerHTML=thumbHtml+'<div class="card-body"><div class="card-num">Concept '+c.num+'</div><div class="card-name">'+c.name+'</div><div class="card-tag">'+c.tagline+'</div><div class="card-foot"><span class="card-price">Từ '+c.pricing[0].v+'</span><button class="card-open" onclick="openConcept(\''+c.id+'\')">Xem chi tiết →</button></div></div>';
+    d.innerHTML=thumbHtml
+      +'<div class="card-body">'
+      +'<div class="card-num">Concept '+c.num+'</div>'
+      +'<div class="card-name">'+c.name+'</div>'
+      +'<div class="card-tag">'+c.tagline+'</div>'
+      +'<div class="card-foot">'
+      +'<span class="card-price">Từ '+c.pricing[0].v+'</span>'
+      +'<span class="card-open">Xem chi tiết →</span>'
+      +'</div></div>';
+    // Entire card is clickable
+    d.addEventListener('click', function(){ openConcept(c.id); });
     g.appendChild(d);
   });
 }
@@ -495,54 +625,20 @@ function openBooking(conceptId){
 }
 
 function submitForm(){
-  var name    = document.getElementById('f-name').value.trim();
-  var phone   = document.getElementById('f-phone').value.trim();
-  var concept = document.getElementById('f-concept').value;
-  var date    = document.getElementById('f-date').value;
-
-  if(!name || !phone || !concept || !date){
-    var missing = [!name&&'Họ và tên', !phone&&'Số điện thoại',
-                   !concept&&'Concept', !date&&'Ngày mong muốn'].filter(Boolean);
-    alert('Vui lòng điền: ' + missing.join(', '));
-    return;
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var concept=document.getElementById('f-concept').value;
+  var date=document.getElementById('f-date').value;
+  if(!name||!phone||!concept||!date){
+    var missing=[!name&&'Họ và tên',!phone&&'Số điện thoại',!concept&&'Concept',!date&&'Ngày mong muốn'].filter(Boolean);
+    alert('Vui lòng điền: '+missing.join(', '));return;
   }
-
-  // Thu thập nguồn biết đến
-  var srcBtns = document.querySelectorAll('.src-btn.active');
-  var source  = Array.from(srcBtns).map(function(b){ return b.textContent; }).join(', ') || 'Không chọn';
-
-  // ⚠️ THAY ĐƯỜNG LINK NÀY bằng Web App URL của bạn
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbyhV5ACzdjWokj3KqAoJowlKzBVIGJybiRrDPceh7wPu7he95wrAZhw8bdR1FLlhnv93g/exec';
-
-  var btn = document.querySelector('.btn-submit');
-  btn.disabled = true;
-  btn.textContent = 'Đang gửi...';
-
-  fetch(SHEET_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name, phone: phone, concept: concept, date: date, source: source })
-  })
-  .then(function(){
-    // Hiển thị thông báo thành công
-    document.querySelector('.form-box').innerHTML =
-      '<div class="form-success">' +
-      '<div style="width:52px;height:52px;border-radius:50%;background:var(--rose-light);border:1px solid var(--rose-mid);display:flex;align-items:center;justify-content:center;margin:0 auto;">' +
-      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>' +
-      '<h4>Đặt lịch thành công!</h4>' +
-      '<p>Cảm ơn <strong>' + name + '</strong>!<br>Studio sẽ liên hệ xác nhận qua <strong>' + phone + '</strong><br>trong vòng 24 giờ. Hẹn gặp bạn tại Story Baby 🌸</p>' +
-      '<button class="btn-primary" style="margin-top:20px;font-size:11px;" onclick="this.closest(\'.form-ov\').remove()">Đóng</button></div>';
-  })
-  .catch(function(err){
-    btn.disabled = false;
-    btn.textContent = 'Gửi đặt lịch ↗';
-    alert('Có lỗi xảy ra, vui lòng thử lại!');
-  });
+  document.querySelector('.form-box').innerHTML='<div class="form-success"><div style="width:52px;height:52px;border-radius:50%;background:var(--rose-light);border:1px solid var(--rose-mid);display:flex;align-items:center;justify-content:center;margin:0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><h4>Đặt lịch thành công!</h4><p>Cảm ơn <strong>'+name+'</strong>!<br>Studio sẽ liên hệ xác nhận qua <strong>'+phone+'</strong><br>trong vòng 24 giờ. Hẹn gặp bạn tại Story Baby 🌸</p><button class="btn-primary" style="margin-top:20px;font-size:11px;" onclick="this.closest(\'.form-ov\').remove()">Đóng</button></div>';
 }
 
-buildGallery();
+buildGallery(GALLERY_IMGS,"all");
 buildCards();
+
 
 </script>
 </body>
