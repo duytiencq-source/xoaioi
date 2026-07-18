@@ -12,205 +12,145 @@
   --cream:#fdf8f5;--warm-white:#fff9f7;
   --ink:#2c1810;--ink-mid:#5a3830;--ink-soft:#9a7068;--ink-muted:#c4a89e;
   --border:#ecddd8;--border-soft:#f5e8e4;
-  --green:#4caf50;--red:#e53935;--blue:#1976d2;
-  --sidebar-w:260px;
+  --green:#4caf50;--red:#e53935;
+  --sidebar-w:250px;
 }
 body{font-family:'Montserrat',sans-serif;background:#f5f0ed;color:var(--ink);display:flex;min-height:100vh;}
 
-/* SIDEBAR */
 .sidebar{width:var(--sidebar-w);background:#2c1810;color:#fff;position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;transition:transform .3s;}
-.sidebar-brand{padding:28px 24px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
-.sidebar-brand h2{font-size:16px;font-weight:600;letter-spacing:1px;}
-.sidebar-brand p{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
-.sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto;}
-.nav-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;cursor:pointer;transition:all .15s;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);margin-bottom:4px;}
+.sidebar-brand{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-brand h2{font-size:15px;font-weight:600;letter-spacing:1px;}
+.sidebar-brand p{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.sidebar-nav{flex:1;padding:14px 10px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;cursor:pointer;transition:all .15s;font-size:12px;font-weight:500;color:rgba(255,255,255,.65);margin-bottom:3px;}
 .nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
 .nav-item.active{background:var(--rose);color:#fff;}
-.nav-item svg{width:18px;height:18px;flex-shrink:0;}
-.nav-badge{margin-left:auto;background:var(--rose);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;}
-.nav-item.active .nav-badge{background:rgba(255,255,255,.3);}
-.sidebar-foot{padding:16px 24px;border-top:1px solid rgba(255,255,255,.1);}
-.sidebar-foot a{color:var(--rose-mid);font-size:11px;text-decoration:none;display:flex;align-items:center;gap:8px;}
-.sidebar-foot a:hover{color:#fff;}
+.nav-item svg{width:16px;height:16px;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--rose);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;min-width:20px;text-align:center;}
+.nav-item.active .nav-badge{background:rgba(255,255,255,.25);}
+.sidebar-foot{padding:14px 20px;border-top:1px solid rgba(255,255,255,.1);font-size:10px;color:rgba(255,255,255,.35);line-height:1.6;}
 
-/* MAIN */
 .main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;}
-.topbar{background:#fff;border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.topbar h1{font-size:18px;font-weight:600;color:var(--ink);}
-.topbar-actions{display:flex;gap:10px;align-items:center;}
-.btn{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
-.btn-primary{background:var(--rose);color:#fff;}
-.btn-primary:hover{background:var(--rose-dark);}
-.btn-secondary{background:#fff;color:var(--ink-mid);border:1px solid var(--border);}
-.btn-secondary:hover{background:var(--rose-light);border-color:var(--rose-mid);}
-.btn-danger{background:var(--red);color:#fff;}
-.btn-danger:hover{background:#c62828;}
-.btn-success{background:var(--green);color:#fff;}
-.btn-success:hover{background:#388e3c;}
-.btn-sm{padding:7px 14px;font-size:10px;}
-.btn-icon{width:34px;height:34px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;border:1px solid var(--border);cursor:pointer;color:var(--ink-soft);transition:all .15s;}
+.topbar{background:#fff;border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;flex-wrap:wrap;gap:10px;}
+.topbar h1{font-size:16px;font-weight:600;}
+.topbar-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+
+.btn{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:8px;border:none;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.btn-primary{background:var(--rose);color:#fff;}.btn-primary:hover{background:var(--rose-dark);}
+.btn-secondary{background:#fff;color:var(--ink-mid);border:1px solid var(--border);}.btn-secondary:hover{background:var(--rose-light);}
+.btn-success{background:var(--green);color:#fff;}.btn-success:hover{background:#388e3c;}
+.btn-sm{padding:7px 12px;font-size:9px;}
+.btn-icon{width:32px;height:32px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;border:1px solid var(--border);cursor:pointer;color:var(--ink-soft);transition:all .15s;}
 .btn-icon:hover{background:var(--rose-light);color:var(--rose);border-color:var(--rose-mid);}
 .btn-icon.danger:hover{background:#fbe9e7;color:var(--red);border-color:#ef9a9a;}
 
-.content{padding:28px 32px;}
-
-/* CARDS */
-.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;}
-.card-header{padding:18px 22px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;}
-.card-header h3{font-size:14px;font-weight:600;}
-.card-header span{font-size:11px;color:var(--ink-muted);}
-.card-body{padding:22px;}
+.content{padding:24px 28px;}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px;}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.card-header h3{font-size:13px;font-weight:600;}
+.card-body{padding:20px;}
 .card-body.no-pad{padding:0;}
 
-/* GRID */
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
-.img-card{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#fdf8f5;cursor:grab;transition:transform .15s,box-shadow .15s;}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.img-card{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#fdf8f5;transition:transform .15s,box-shadow .15s;}
 .img-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);}
-.img-card img{width:100%;height:140px;object-fit:cover;display:block;}
-.img-card-actions{position:absolute;top:8px;right:8px;display:flex;gap:4px;opacity:0;transition:opacity .15s;}
+.img-card img{width:100%;height:130px;object-fit:cover;display:block;}
+.img-card-actions{position:absolute;top:6px;right:6px;display:flex;gap:4px;opacity:0;transition:opacity .15s;}
 .img-card:hover .img-card-actions{opacity:1;}
-.img-card-info{padding:8px 10px;font-size:10px;color:var(--ink-muted);}
-.img-card-order{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;font-weight:700;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.img-card-info{padding:6px 10px;font-size:9px;color:var(--ink-muted);display:flex;justify-content:space-between;align-items:center;}
+.img-card-order{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-weight:700;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.img-card-concept{background:var(--rose-light);color:var(--rose);font-weight:600;font-size:9px;padding:2px 8px;border-radius:4px;}
 
-/* UPLOAD ZONE */
-.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);}
+.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:32px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);}
 .upload-zone:hover,.upload-zone.dragover{border-color:var(--rose);background:var(--rose-light);}
-.upload-zone svg{margin:0 auto 10px;display:block;color:var(--rose-mid);}
-.upload-zone p{font-size:12px;color:var(--ink-soft);line-height:1.6;}
-.upload-zone strong{color:var(--rose);font-weight:600;}
+.upload-zone p{font-size:11px;color:var(--ink-soft);line-height:1.6;}
+.upload-zone strong{color:var(--rose);}
 .upload-zone input[type=file]{display:none;}
 
-/* FORM */
-.form-group{margin-bottom:18px;}
-.form-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:7px;display:block;}
-.form-input{width:100%;font-family:'Montserrat',sans-serif;font-size:13px;color:var(--ink);background:#fdf8f5;border:1px solid var(--border);border-radius:10px;padding:12px 16px;outline:none;transition:border-color .2s;}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:6px;display:block;}
+.form-input{width:100%;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--ink);background:#fdf8f5;border:1px solid var(--border);border-radius:10px;padding:10px 14px;outline:none;transition:border-color .2s;}
 .form-input:focus{border-color:var(--rose);}
-textarea.form-input{resize:vertical;min-height:80px;}
-select.form-input{cursor:pointer;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.form-hint{font-size:10px;color:var(--ink-muted);margin-top:4px;}
+textarea.form-input{resize:vertical;min-height:70px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
-/* TABLE */
 .data-table{width:100%;border-collapse:collapse;}
-.data-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);font-weight:600;text-align:left;padding:12px 16px;background:var(--rose-light);border-bottom:1px solid var(--rose-mid);}
-.data-table td{padding:12px 16px;font-size:12px;color:var(--ink);border-bottom:1px solid var(--border-soft);vertical-align:middle;}
+.data-table th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);font-weight:600;text-align:left;padding:10px 14px;background:var(--rose-light);}
+.data-table td{padding:10px 14px;font-size:11px;color:var(--ink);border-bottom:1px solid var(--border-soft);vertical-align:middle;}
 .data-table tr:hover{background:var(--warm-white);}
-.data-table .stars{color:var(--rose);letter-spacing:2px;}
+.stars{color:var(--rose);letter-spacing:2px;}
 
-/* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
-.stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
-.stat-num{font-size:28px;font-weight:700;color:var(--rose);margin-bottom:4px;}
-.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-muted);font-weight:600;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;}
+.stat-num{font-size:26px;font-weight:700;color:var(--rose);margin-bottom:2px;}
+.stat-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-muted);font-weight:600;}
 
-/* TABS (for concept sub-sections) */
-.tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
-.tab{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;}
-.tab:hover{background:var(--rose-light);color:var(--rose);border-color:var(--rose-mid);}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
+.tab{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;}
+.tab:hover{background:var(--rose-light);color:var(--rose);}
 .tab.active{background:var(--rose);color:#fff;border-color:var(--rose);}
 
-/* MODAL */
 .modal-ov{position:fixed;inset:0;background:rgba(44,24,16,.5);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;}
 .modal-ov.show{opacity:1;pointer-events:all;}
-.modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;}
-.modal-head{padding:20px 24px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;}
-.modal-head h3{font-size:16px;font-weight:600;}
-.modal-body{padding:24px;}
-.modal-foot{padding:16px 24px;border-top:1px solid var(--border-soft);display:flex;justify-content:flex-end;gap:10px;}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;}
+.modal-head{padding:18px 22px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;}
+.modal-head h3{font-size:15px;font-weight:600;}
+.modal-body{padding:22px;}
+.modal-foot{padding:14px 22px;border-top:1px solid var(--border-soft);display:flex;justify-content:flex-end;gap:8px;}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:#2c1810;color:#fff;padding:14px 22px;border-radius:10px;font-size:12px;font-weight:500;z-index:600;transform:translateY(100px);opacity:0;transition:all .3s;}
-.toast.show{transform:translateY(0);opacity:1;}
-.toast.success{background:var(--green);}
-.toast.error{background:var(--red);}
+.toast{position:fixed;bottom:20px;right:20px;background:#2c1810;color:#fff;padding:12px 20px;border-radius:10px;font-size:11px;font-weight:500;z-index:600;transform:translateY(100px);opacity:0;transition:all .3s;max-width:360px;}
+.toast.show{transform:translateY(0);opacity:1;}.toast.success{background:var(--green);}.toast.error{background:var(--red);}
 
-/* CONCEPT PRICING EDITOR */
-.pricing-row{display:grid;grid-template-columns:2fr 1.5fr 1.5fr 40px;gap:8px;align-items:center;margin-bottom:8px;}
-.pricing-row .form-input{padding:9px 12px;font-size:12px;}
+.pricing-row{display:grid;grid-template-columns:2fr 1.5fr 1.5fr 36px;gap:6px;align-items:center;margin-bottom:6px;}
+.pricing-row .form-input{padding:8px 10px;font-size:11px;}
 
-/* REVIEW CARD */
-.review-edit-card{background:var(--warm-white);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;}
-.review-edit-card .review-text{flex:1;font-size:12px;color:var(--ink-mid);line-height:1.7;font-style:italic;}
-.review-edit-card .review-meta{font-size:11px;color:var(--ink-soft);margin-top:6px;font-style:normal;}
+.section-panel{display:none;}.section-panel.active{display:block;}
 
-/* SORTABLE */
-.sortable-ghost{opacity:.4;}
-.sortable-drag{box-shadow:0 8px 30px rgba(0,0,0,.2);}
-
-/* SECTION PANEL */
-.section-panel{display:none;}
-.section-panel.active{display:block;}
-
-/* MOBILE */
-.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:200;width:40px;height:40px;border-radius:10px;background:var(--rose);color:#fff;border:none;cursor:pointer;font-size:20px;}
-@media(max-width:800px){
-  .sidebar{transform:translateX(-100%);}
-  .sidebar.open{transform:translateX(0);}
-  .main{margin-left:0;}
-  .menu-toggle{display:flex;align-items:center;justify-content:center;}
-  .content{padding:20px 16px;}
-  .topbar{padding:16px;padding-left:60px;}
-  .stats-row{grid-template-columns:1fr 1fr;}
-  .form-row{grid-template-columns:1fr;}
-  .img-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
-}
-
-/* Concept photo thumb in admin */
-.concept-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:12px;}
+.concept-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px;}
 .concept-photo-item{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
-.concept-photo-item img{width:100%;height:100px;object-fit:cover;display:block;}
-.concept-photo-item .cp-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;}
+.concept-photo-item img{width:100%;height:90px;object-fit:cover;display:block;}
+.concept-photo-item .cp-del{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;border:none;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;}
 .concept-photo-item:hover .cp-del{opacity:1;}
 
-.empty-state{text-align:center;padding:40px 20px;color:var(--ink-muted);}
-.empty-state svg{margin:0 auto 12px;display:block;opacity:.4;}
-.empty-state p{font-size:13px;font-weight:300;line-height:1.7;}
+.empty-state{text-align:center;padding:32px 20px;color:var(--ink-muted);}
+.empty-state p{font-size:12px;font-weight:300;}
+
+.import-zone{border:3px dashed var(--rose-mid);border-radius:16px;padding:60px 30px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);max-width:600px;margin:80px auto;}
+.import-zone:hover,.import-zone.dragover{border-color:var(--rose);background:var(--rose-light);}
+.import-zone h2{font-size:18px;color:var(--ink);margin:16px 0 8px;}
+.import-zone p{font-size:12px;color:var(--ink-soft);line-height:1.7;}
+.import-zone input{display:none;}
+
+.size-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-top:6px;}
+.size-bar-fill{height:100%;background:var(--rose);border-radius:4px;transition:width .3s;}
+
+.menu-toggle{display:none;position:fixed;top:12px;left:12px;z-index:200;width:38px;height:38px;border-radius:10px;background:var(--rose);color:#fff;border:none;cursor:pointer;font-size:18px;}
+@media(max-width:800px){
+  .sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}.menu-toggle{display:flex;align-items:center;justify-content:center;}
+  .content{padding:16px 14px;}.topbar{padding:14px;padding-left:56px;}
+  .stats-row{grid-template-columns:1fr 1fr;}.form-row{grid-template-columns:1fr;}
+  .img-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+}
 </style>
 </head>
 <body>
 
 <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
 
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-brand">
-    <h2>Story Baby</h2>
-    <p>Admin Panel</p>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="nav-item active" data-section="dashboard" onclick="switchSection(this,'dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Dashboard
-    </div>
-    <div class="nav-item" data-section="banners" onclick="switchSection(this,'banners')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Banner
-      <span class="nav-badge" id="bannerCount">0</span>
-    </div>
-    <div class="nav-item" data-section="gallery" onclick="switchSection(this,'gallery')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-      Gallery
-      <span class="nav-badge" id="galleryCount">0</span>
-    </div>
-    <div class="nav-item" data-section="concepts" onclick="switchSection(this,'concepts')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      Concepts
-      <span class="nav-badge" id="conceptCount">6</span>
-    </div>
-    <div class="nav-item" data-section="reviews" onclick="switchSection(this,'reviews')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      Reviews
-      <span class="nav-badge" id="reviewCount">0</span>
-    </div>
-    <div class="nav-item" data-section="settings" onclick="switchSection(this,'settings')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      Cai dat
-    </div>
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Story Baby</h2><p>Admin Panel</p></div>
+  <nav class="sidebar-nav" id="sideNav">
+    <div class="nav-item active" onclick="go(this,'dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+    <div class="nav-item" onclick="go(this,'banners')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Banner<span class="nav-badge" id="nbBanner">0</span></div>
+    <div class="nav-item" onclick="go(this,'gallery')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg>Gallery<span class="nav-badge" id="nbGallery">0</span></div>
+    <div class="nav-item" onclick="go(this,'concepts')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Concepts<span class="nav-badge" id="nbConcept">6</span></div>
+    <div class="nav-item" onclick="go(this,'reviews')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Reviews<span class="nav-badge" id="nbReview">0</span></div>
+    <div class="nav-item" onclick="go(this,'settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Cai dat</div>
   </nav>
   <div class="sidebar-foot">
-    <a href="index.html" target="_blank">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      Xem website
-    </a>
+    Gioi han khuyen nghi: 30MB<br>
+    <strong id="sizeInfo" style="color:var(--rose-mid);">Chua import</strong>
   </div>
 </aside>
 
@@ -218,172 +158,141 @@ select.form-input{cursor:pointer;}
   <div class="topbar">
     <h1 id="pageTitle">Dashboard</h1>
     <div class="topbar-actions">
-      <button class="btn btn-success" onclick="saveAll()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-        Luu thay doi
-      </button>
+      <button class="btn btn-secondary" onclick="document.getElementById('reimportFile').click()">Import index.html</button>
+      <input type="file" id="reimportFile" accept=".html,.htm" style="display:none" onchange="handleImport(this.files[0]);this.value='';">
+      <button class="btn btn-success" onclick="exportFile()" id="btnExport" disabled>Export index.html</button>
     </div>
   </div>
 
   <div class="content">
 
-    <!-- ============ DASHBOARD ============ -->
-    <div class="section-panel active" id="sec-dashboard">
+    <!-- IMPORT SCREEN -->
+    <div class="section-panel active" id="sec-import">
+      <div class="import-zone" id="importZone" onclick="document.getElementById('importFile').click()">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <h2>Import file index.html</h2>
+        <p>Keo tha file <strong>index.html</strong> hien tai vao day hoac click de chon</p>
+        <p style="font-size:10px;color:var(--ink-muted);margin-top:12px;">Admin se doc tat ca du lieu (anh, concept, review...) tu file</p>
+        <input type="file" id="importFile" accept=".html,.htm">
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="section-panel" id="sec-dashboard">
       <div class="stats-row">
-        <div class="stat-card"><div class="stat-num" id="statBanners">0</div><div class="stat-lbl">Banners</div></div>
-        <div class="stat-card"><div class="stat-num" id="statGallery">0</div><div class="stat-lbl">Anh Gallery</div></div>
-        <div class="stat-card"><div class="stat-num" id="statConcepts">6</div><div class="stat-lbl">Concepts</div></div>
-        <div class="stat-card"><div class="stat-num" id="statReviews">0</div><div class="stat-lbl">Reviews</div></div>
+        <div class="stat-card"><div class="stat-num" id="sBanner">0</div><div class="stat-lbl">Banners</div></div>
+        <div class="stat-card"><div class="stat-num" id="sGallery">0</div><div class="stat-lbl">Gallery</div></div>
+        <div class="stat-card"><div class="stat-num" id="sConcept">6</div><div class="stat-lbl">Concepts</div></div>
+        <div class="stat-card"><div class="stat-num" id="sReview">0</div><div class="stat-lbl">Reviews</div></div>
       </div>
       <div class="card">
-        <div class="card-header"><h3>Huong dan su dung</h3></div>
+        <div class="card-header"><h3>Dung luong file</h3></div>
         <div class="card-body">
-          <div style="font-size:13px;line-height:2;color:var(--ink-mid);">
-            <p><strong>1. Banner:</strong> Upload anh banner slideshow trang chu. Keo tha de sap xep thu tu.</p>
-            <p><strong>2. Gallery:</strong> Quan ly thu vien anh chinh. Gan concept cho moi anh de hien thi dung tab.</p>
-            <p><strong>3. Concepts:</strong> Chinh sua thong tin concept (ten, gia, anh concept...).</p>
-            <p><strong>4. Reviews:</strong> Them/sua/xoa danh gia khach hang.</p>
-            <p><strong>5. Cai dat:</strong> Thay doi thong tin hero, lien he, mang xa hoi.</p>
-            <p style="margin-top:12px;color:var(--rose);font-weight:600;">Nhan "Luu thay doi" de cap nhat website. Thay doi se co hieu luc ngay khi reload trang web.</p>
-          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;"><span>Dang su dung</span><span id="sizeUsed">0 KB</span></div>
+          <div class="size-bar"><div class="size-bar-fill" id="sizeBarFill" style="width:0%"></div></div>
+          <div style="font-size:10px;color:var(--ink-muted);margin-top:4px;">Khuyen nghi &lt;30MB. Toi da GitHub: 100MB. <strong id="sizePercent"></strong></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Quy trinh su dung</h3></div>
+        <div class="card-body" style="font-size:12px;line-height:2;color:var(--ink-mid);">
+          <p><strong>B1:</strong> Import file index.html hien tai</p>
+          <p><strong>B2:</strong> Chinh sua: Banner, Gallery, Concepts, Reviews, Cai dat</p>
+          <p><strong>B3:</strong> Nhan <strong>"Export index.html"</strong> tai file moi</p>
+          <p><strong>B4:</strong> Thay the file trong GitHub &rarr; Netlify tu deploy</p>
+          <p style="margin-top:10px;padding:12px;background:var(--rose-light);border-radius:8px;color:var(--rose-dark);">
+            Anh upload duoc tu dong nen (max 1200px, WebP 80%). Moi anh ~50-150KB.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- ============ BANNERS ============ -->
+    <!-- BANNERS -->
     <div class="section-panel" id="sec-banners">
       <div class="card">
-        <div class="card-header">
-          <h3>Banner Slideshow</h3>
-          <span>Keo tha de thay doi thu tu</span>
-        </div>
+        <div class="card-header"><h3>Banner Slideshow</h3><span style="font-size:10px;color:var(--ink-muted);">Keo tha de sap xep</span></div>
         <div class="card-body">
           <div class="upload-zone" id="bannerUpload" onclick="document.getElementById('bannerFile').click()">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <p>Keo anh vao day hoac <strong>click de chon</strong></p>
-            <p style="font-size:10px;color:var(--ink-muted);margin-top:4px;">Ho tro JPG, PNG, WebP. Kich thuoc khuyen nghi: 1200x560px</p>
+            <p>Keo anh vao hoac <strong>click de chon</strong> (1200x500px khuyen nghi)</p>
             <input type="file" id="bannerFile" multiple accept="image/*">
           </div>
-          <div class="img-grid" id="bannerGrid" style="margin-top:16px;"></div>
+          <div class="img-grid" id="bannerGrid" style="margin-top:14px;"></div>
         </div>
       </div>
     </div>
 
-    <!-- ============ GALLERY ============ -->
+    <!-- GALLERY -->
     <div class="section-panel" id="sec-gallery">
       <div class="card">
         <div class="card-header">
           <h3>Thu vien anh</h3>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <select class="form-input" id="galConceptFilter" style="width:auto;padding:8px 14px;font-size:11px;" onchange="renderGallery()">
-              <option value="all">Tat ca</option>
-              <option value="newborn">NewBorn</option>
-              <option value="baby">Baby</option>
-              <option value="birthday">Birthday</option>
-              <option value="family">Gia dinh</option>
-              <option value="kyyeu">Ky yeu</option>
-              <option value="maternity">Me bau</option>
-              <option value="">Chua phan loai</option>
-            </select>
-          </div>
+          <select class="form-input" id="galFilter" style="width:auto;padding:7px 12px;font-size:10px;" onchange="renderGallery()">
+            <option value="all">Tat ca</option>
+            <option value="newborn">NewBorn</option><option value="baby">Baby</option>
+            <option value="birthday">Birthday</option><option value="family">Gia dinh</option>
+            <option value="kyyeu">Ky yeu</option><option value="maternity">Me bau</option>
+            <option value="">Chua phan loai</option>
+          </select>
         </div>
         <div class="card-body">
+          <div style="margin-bottom:10px;">
+            <label class="form-label">Concept cho anh moi upload:</label>
+            <select class="form-input" id="galUpConcept" style="width:auto;padding:7px 12px;font-size:10px;">
+              <option value="">Khong gan</option>
+              <option value="newborn">NewBorn</option><option value="baby">Baby</option>
+              <option value="birthday">Birthday</option><option value="family">Gia dinh</option>
+              <option value="kyyeu">Ky yeu</option><option value="maternity">Me bau</option>
+            </select>
+          </div>
           <div class="upload-zone" id="galleryUpload" onclick="document.getElementById('galleryFile').click()">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <p>Keo anh vao day hoac <strong>click de chon</strong></p>
-            <p style="font-size:10px;color:var(--ink-muted);margin-top:4px;">Chon concept truoc khi upload de tu dong gan nhan</p>
+            <p>Keo anh vao hoac <strong>click de chon</strong></p>
             <input type="file" id="galleryFile" multiple accept="image/*">
           </div>
-          <div style="margin-top:10px;">
-            <label class="form-label">Concept cho anh moi upload:</label>
-            <select class="form-input" id="galUploadConcept" style="width:auto;padding:8px 14px;font-size:11px;">
-              <option value="">Khong gan</option>
-              <option value="newborn">NewBorn</option>
-              <option value="baby">Baby</option>
-              <option value="birthday">Birthday</option>
-              <option value="family">Gia dinh</option>
-              <option value="kyyeu">Ky yeu</option>
-              <option value="maternity">Me bau</option>
-            </select>
-          </div>
-          <div class="img-grid" id="galleryGrid" style="margin-top:16px;"></div>
+          <div class="img-grid" id="galleryGrid" style="margin-top:14px;"></div>
         </div>
       </div>
     </div>
 
-    <!-- ============ CONCEPTS ============ -->
+    <!-- CONCEPTS -->
     <div class="section-panel" id="sec-concepts">
-      <div class="tabs" id="conceptTabs"></div>
-      <div id="conceptEditor"></div>
+      <div class="tabs" id="cTabs"></div>
+      <div id="cEditor"></div>
     </div>
 
-    <!-- ============ REVIEWS ============ -->
+    <!-- REVIEWS -->
     <div class="section-panel" id="sec-reviews">
       <div class="card">
-        <div class="card-header">
-          <h3>Danh gia khach hang</h3>
-          <button class="btn btn-primary btn-sm" onclick="openReviewModal()">+ Them review</button>
-        </div>
+        <div class="card-header"><h3>Danh gia khach hang</h3><button class="btn btn-primary btn-sm" onclick="openReviewModal()">+ Them</button></div>
         <div class="card-body no-pad">
-          <table class="data-table" id="reviewTable">
-            <thead><tr><th>Khach hang</th><th>Concept</th><th>Noi dung</th><th>Sao</th><th style="width:80px;">Thao tac</th></tr></thead>
-            <tbody id="reviewBody"></tbody>
-          </table>
+          <table class="data-table"><thead><tr><th>Ten</th><th>Concept</th><th>Noi dung</th><th>Sao</th><th style="width:70px"></th></tr></thead>
+          <tbody id="reviewBody"></tbody></table>
         </div>
       </div>
     </div>
 
-    <!-- ============ SETTINGS ============ -->
+    <!-- SETTINGS -->
     <div class="section-panel" id="sec-settings">
       <div class="card">
-        <div class="card-header"><h3>Thong tin Hero</h3></div>
+        <div class="card-header"><h3>Hero Section</h3></div>
         <div class="card-body">
-          <div class="form-group">
-            <label class="form-label">Tieu de chinh</label>
-            <input class="form-input" id="setHeroTitle" value="Luu giu khoang khac">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Tieu de</label><input class="form-input" id="sHeroTitle"></div>
+            <div class="form-group"><label class="form-label">Phan in nghieng</label><input class="form-input" id="sHeroEm"></div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Tieu de phu (in nghieng)</label>
-            <input class="form-input" id="setHeroTitleEm" value="chan that nhat">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Mo ta</label>
-            <textarea class="form-input" id="setHeroSub">Moi buc anh la mot cau chuyen — ve be, ve gia dinh, ve nhung ngay khong the quay lai.</textarea>
-          </div>
+          <div class="form-group"><label class="form-label">Mo ta</label><textarea class="form-input" id="sHeroSub"></textarea></div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><h3>Thong tin lien he</h3></div>
+        <div class="card-header"><h3>Lien he</h3></div>
         <div class="card-body">
           <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Dia chi</label>
-              <input class="form-input" id="setAddress" value="33b Xo Viet Nghe Tinh, Phuong 8, Da Lat">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Hotline</label>
-              <input class="form-input" id="setPhone" value="093 452 14 98">
-            </div>
+            <div class="form-group"><label class="form-label">Hotline</label><input class="form-input" id="sPhone"></div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="sEmail"></div>
           </div>
+          <div class="form-group"><label class="form-label">Dia chi</label><input class="form-input" id="sAddress"></div>
           <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input class="form-input" id="setEmail" value="storystudiodl@gmail.com">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Google Maps embed URL</label>
-              <input class="form-input" id="setMapUrl" value="">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Facebook URL</label>
-              <input class="form-input" id="setFacebook" value="https://www.facebook.com/storybabystudiodalat">
-            </div>
-            <div class="form-group">
-              <label class="form-label">TikTok URL</label>
-              <input class="form-input" id="setTiktok" value="https://www.tiktok.com/@xoaioi.tiemanhchobedalat">
-            </div>
+            <div class="form-group"><label class="form-label">Facebook URL</label><input class="form-input" id="sFb"></div>
+            <div class="form-group"><label class="form-label">TikTok URL</label><input class="form-input" id="sTk"></div>
           </div>
         </div>
       </div>
@@ -392,488 +301,341 @@ select.form-input{cursor:pointer;}
   </div>
 </main>
 
-<!-- MODAL -->
 <div class="modal-ov" id="modalOv" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-head">
-      <h3 id="modalTitle">Them review</h3>
-      <button class="btn-icon" onclick="closeModal()">&#10005;</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-foot" id="modalFoot"></div>
-  </div>
+  <div class="modal"><div class="modal-head"><h3 id="modalTitle"></h3><button class="btn-icon" onclick="closeModal()">&#10005;</button></div>
+  <div class="modal-body" id="modalBody"></div>
+  <div class="modal-foot" id="modalFoot"></div></div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── DATA STORE ───
-var DATA = {
-  banners: [],
-  gallery: [],
-  galleryConceptMap: [],
-  concepts: [],
-  reviews: [],
-  thumbnails: {},
-  conceptPhotos: {},
-  babyImgs: [],
-  settings: {
-    heroTitle: 'Luu giu khoang khac',
-    heroTitleEm: 'chan that nhat',
-    heroSub: 'Moi buc anh la mot cau chuyen — ve be, ve gia dinh, ve nhung ngay khong the quay lai.',
-    address: '33b Xo Viet Nghe Tinh, Phuong 8, Da Lat',
-    phone: '093 452 14 98',
-    email: 'storystudiodl@gmail.com',
-    facebook: 'https://www.facebook.com/storybabystudiodalat',
-    tiktok: 'https://www.tiktok.com/@xoaioi.tiemanhchobedalat',
-    mapUrl: ''
-  }
-};
+var SRC='';
+var D={banners:[],gallery:[],galMap:[],concepts:[],reviews:[],thumbs:{},cPhotos:{},babyImgs:[],settings:{}};
+var cIdx=0;
+var CN={newborn:'NewBorn',baby:'Baby',birthday:'Birthday',family:'Gia dinh',kyyeu:'Ky yeu',maternity:'Me bau'};
 
-// ─── LOAD FROM LOCALSTORAGE ───
-function loadData(){
-  var saved = localStorage.getItem('storyBabyAdmin');
-  if(saved){
-    try{ DATA = JSON.parse(saved); }catch(e){}
-  }
-  updateCounts();
-}
-
-function saveAll(){
-  readSettingsForm();
-  readConceptEdits();
-  localStorage.setItem('storyBabyAdmin', JSON.stringify(DATA));
-  updateCounts();
-  showToast('Da luu thay doi thanh cong!','success');
-}
-
-function readSettingsForm(){
-  DATA.settings.heroTitle = document.getElementById('setHeroTitle').value;
-  DATA.settings.heroTitleEm = document.getElementById('setHeroTitleEm').value;
-  DATA.settings.heroSub = document.getElementById('setHeroSub').value;
-  DATA.settings.address = document.getElementById('setAddress').value;
-  DATA.settings.phone = document.getElementById('setPhone').value;
-  DATA.settings.email = document.getElementById('setEmail').value;
-  DATA.settings.facebook = document.getElementById('setFacebook').value;
-  DATA.settings.tiktok = document.getElementById('setTiktok').value;
-  DATA.settings.mapUrl = document.getElementById('setMapUrl').value;
-}
-
-function populateSettingsForm(){
-  var s = DATA.settings || {};
-  document.getElementById('setHeroTitle').value = s.heroTitle || '';
-  document.getElementById('setHeroTitleEm').value = s.heroTitleEm || '';
-  document.getElementById('setHeroSub').value = s.heroSub || '';
-  document.getElementById('setAddress').value = s.address || '';
-  document.getElementById('setPhone').value = s.phone || '';
-  document.getElementById('setEmail').value = s.email || '';
-  document.getElementById('setFacebook').value = s.facebook || '';
-  document.getElementById('setTiktok').value = s.tiktok || '';
-  document.getElementById('setMapUrl').value = s.mapUrl || '';
-}
-
-// ─── COUNTS ───
-function updateCounts(){
-  var bc = DATA.banners.length;
-  var gc = DATA.gallery.length;
-  var rc = DATA.reviews.length;
-  document.getElementById('bannerCount').textContent = bc;
-  document.getElementById('galleryCount').textContent = gc;
-  document.getElementById('reviewCount').textContent = rc;
-  document.getElementById('statBanners').textContent = bc;
-  document.getElementById('statGallery').textContent = gc;
-  document.getElementById('statReviews').textContent = rc;
-}
-
-// ─── SECTION SWITCH ───
-function switchSection(el, sec){
+function go(el,sec){
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
   el.classList.add('active');
   document.querySelectorAll('.section-panel').forEach(function(p){p.classList.remove('active');});
-  document.getElementById('sec-'+sec).classList.add('active');
-  var titles = {dashboard:'Dashboard',banners:'Quan ly Banner',gallery:'Thu vien anh',concepts:'Quan ly Concepts',reviews:'Danh gia khach hang',settings:'Cai dat website'};
-  document.getElementById('pageTitle').textContent = titles[sec]||sec;
+  var t=document.getElementById('sec-'+sec);if(t)t.classList.add('active');
+  var titles={dashboard:'Dashboard',banners:'Banner',gallery:'Gallery',concepts:'Concepts',reviews:'Reviews',settings:'Cai dat'};
+  document.getElementById('pageTitle').textContent=titles[sec]||sec;
   document.querySelector('.sidebar').classList.remove('open');
-  if(sec==='concepts') buildConceptTabs();
-  if(sec==='gallery') renderGallery();
-  if(sec==='banners') renderBanners();
-  if(sec==='reviews') renderReviews();
-  if(sec==='settings') populateSettingsForm();
+  if(sec==='banners')renderBanners();if(sec==='gallery')renderGallery();
+  if(sec==='concepts')buildCTabs();if(sec==='reviews')renderReviews();if(sec==='settings')fillSettings();
 }
 
-// ─── IMAGE UPLOAD HELPER ───
-function readFiles(files, callback){
-  var results = [];
-  var pending = files.length;
-  if(!pending) return callback([]);
-  Array.from(files).forEach(function(f){
-    var reader = new FileReader();
-    reader.onload = function(e){
-      results.push(e.target.result);
-      pending--;
-      if(!pending) callback(results);
-    };
-    reader.readAsDataURL(f);
-  });
+// ═══ IMPORT ═══
+(function(){
+  var zone=document.getElementById('importZone'),inp=document.getElementById('importFile');
+  inp.onchange=function(){if(this.files[0])handleImport(this.files[0]);this.value='';};
+  zone.ondragover=function(e){e.preventDefault();zone.classList.add('dragover');};
+  zone.ondragleave=function(){zone.classList.remove('dragover');};
+  zone.ondrop=function(e){e.preventDefault();zone.classList.remove('dragover');if(e.dataTransfer.files[0])handleImport(e.dataTransfer.files[0]);};
+})();
+
+function handleImport(file){
+  if(!file)return;
+  var r=new FileReader();
+  r.onload=function(e){
+    SRC=e.target.result;
+    parseSource(SRC);
+    document.getElementById('sec-import').classList.remove('active');
+    document.getElementById('sec-dashboard').classList.add('active');
+    document.querySelectorAll('.nav-item')[0].classList.add('active');
+    document.getElementById('btnExport').disabled=false;
+    updateStats();
+    toast('Import OK! '+D.gallery.length+' anh, '+D.concepts.length+' concepts, '+D.reviews.length+' reviews.','success');
+  };
+  r.readAsText(file);
 }
 
-function setupDropZone(zoneId, fileInputId, onFiles){
-  var zone = document.getElementById(zoneId);
-  var input = document.getElementById(fileInputId);
-  if(!zone || !input) return;
-  input.addEventListener('change', function(){ if(this.files.length) onFiles(this.files); this.value=''; });
-  zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', function(){ zone.classList.remove('dragover'); });
-  zone.addEventListener('drop', function(e){
-    e.preventDefault(); zone.classList.remove('dragover');
-    if(e.dataTransfer.files.length) onFiles(e.dataTransfer.files);
-  });
-}
-
-// ─── BANNERS ───
-function renderBanners(){
-  var grid = document.getElementById('bannerGrid');
-  grid.innerHTML = '';
-  if(!DATA.banners.length){
-    grid.innerHTML = '<div class="empty-state"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Chua co banner nao. Upload anh o tren.</p></div>';
-    return;
-  }
-  DATA.banners.forEach(function(src, i){
-    var d = document.createElement('div');
-    d.className = 'img-card';
-    d.draggable = true;
-    d.dataset.idx = i;
-    d.innerHTML = '<span class="img-card-order">'+(i+1)+'</span><img src="'+src+'" alt="Banner '+(i+1)+'">'
-      +'<div class="img-card-actions"><button class="btn-icon danger" onclick="deleteBanner('+i+')" title="Xoa"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button></div>'
-      +'<div class="img-card-info">Banner '+(i+1)+'</div>';
-    d.addEventListener('dragstart', function(e){ e.dataTransfer.setData('text/plain', i); });
-    d.addEventListener('dragover', function(e){ e.preventDefault(); });
-    d.addEventListener('drop', function(e){
-      e.preventDefault();
-      var from = parseInt(e.dataTransfer.getData('text/plain'));
-      var to = i;
-      if(from!==to){ var item=DATA.banners.splice(from,1)[0]; DATA.banners.splice(to,0,item); renderBanners(); }
-    });
-    grid.appendChild(d);
-  });
-}
-
-function deleteBanner(i){
-  if(!confirm('Xoa banner nay?')) return;
-  DATA.banners.splice(i,1);
-  renderBanners();
-  updateCounts();
-}
-
-// ─── GALLERY ───
-function renderGallery(){
-  var grid = document.getElementById('galleryGrid');
-  var filter = document.getElementById('galConceptFilter').value;
-  grid.innerHTML = '';
-  var conceptNames = {newborn:'NewBorn',baby:'Baby',birthday:'Birthday',family:'Gia dinh',kyyeu:'Ky yeu',maternity:'Me bau'};
-  var filtered = [];
-  DATA.gallery.forEach(function(src,i){
-    var cm = DATA.galleryConceptMap[i] || null;
-    if(filter==='all' || (filter==='' && !cm) || cm===filter){
-      filtered.push({src:src, idx:i, concept:cm});
+function parseSource(src){
+  function ex(name){
+    var re=new RegExp('(?:const|var|let)\\s+'+name+'\\s*=\\s*');
+    var m=re.exec(src);if(!m)return null;
+    var start=m.index+m[0].length,depth=0,i=start,inStr=false,strCh='';
+    for(;i<src.length;i++){
+      var ch=src[i];
+      if(inStr){if(ch===strCh&&src[i-1]!=='\\')inStr=false;continue;}
+      if(ch==='"'||ch==="'"){inStr=true;strCh=ch;continue;}
+      if(ch==='['||ch==='{')depth++;
+      if(ch===']'||ch==='}'){depth--;if(depth===0){i++;break;}}
     }
-  });
-  if(!filtered.length){
-    grid.innerHTML = '<div class="empty-state"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Chua co anh nao. Upload anh o tren.</p></div>';
-    return;
+    var raw=src.substring(start,i);
+    try{return JSON.parse(raw);}catch(e){try{return(new Function('return '+raw))();}catch(e2){return null;}}
   }
-  filtered.forEach(function(item){
-    var d = document.createElement('div');
-    d.className = 'img-card';
-    var badge = item.concept ? '<div class="img-card-info" style="background:var(--rose-light);color:var(--rose);font-weight:600;">'+((conceptNames[item.concept])||item.concept)+'</div>' : '<div class="img-card-info">Chua phan loai</div>';
-    d.innerHTML = '<img src="'+item.src+'" alt="Gallery">'
+  D.banners=ex('BANNER_IMGS')||[];
+  D.gallery=ex('GALLERY_IMGS')||[];
+  D.galMap=ex('GALLERY_CONCEPT_MAP')||[];
+  D.babyImgs=ex('BABY_IMGS')||[];
+  D.thumbs=ex('THUMB_IMGS')||{};
+  D.reviews=ex('REVIEWS')||[];
+  var cp;
+  cp=ex('NEWBORN_IMGS');if(cp)D.cPhotos.newborn=cp;
+  cp=ex('BIRTHDAY_IMGS');if(cp)D.cPhotos.birthday=cp;
+  cp=ex('FAMILY_IMGS');if(cp)D.cPhotos.family=cp;
+  cp=ex('KYYEU_IMGS');if(cp)D.cPhotos.kyyeu=cp;
+  cp=ex('MATERNITY_IMGS');if(cp)D.cPhotos.maternity=cp;
+  var raw=ex('concepts');
+  if(raw&&raw.length)D.concepts=raw.filter(function(c){return c&&typeof c==='object'&&c.id;});
+  while(D.galMap.length<D.gallery.length)D.galMap.push(null);
+  parseSettings(src);
+}
+
+function parseSettings(src){
+  var s=D.settings;
+  var m=src.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+  if(m){var t=m[1];var em=t.match(/<em>(.*?)<\/em>/);s.heroEm=em?em[1].trim():'';s.heroTitle=t.replace(/<br\s*\/?>/g,' ').replace(/<em>.*?<\/em>/,'').replace(/<[^>]+>/g,'').trim();}
+  m=src.match(/class="hero-sub"[^>]*>([\s\S]*?)<\/p>/);if(m)s.heroSub=m[1].replace(/<[^>]+>/g,'').trim();
+  m=src.match(/href="tel:(\d+)"/);if(m){var r=m[1];s.phone=r.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/,'$1 $2 $3 $4');}
+  m=src.match(/mailto:([\w@.]+)/);if(m)s.email=m[1];
+  m=src.match(/facebook\.com\/[\w.-]+/);if(m)s.fb='https://www.'+m[0];
+  m=src.match(/tiktok\.com\/@[\w.-]+/);if(m)s.tk='https://www.'+m[0];
+  m=src.match(/class="info-val">([\s\S]*?)<\/div>/);if(m)s.address=m[1].replace(/<br\s*\/?>/g,', ').replace(/<[^>]+>/g,'').trim();
+}
+
+// ═══ EXPORT ═══
+function exportFile(){
+  if(!SRC){toast('Chua import file!','error');return;}
+  readConceptEdits();readSettingsForm();
+  var out=SRC;
+
+  function rv(name,val){
+    var re=new RegExp('((?:const|var|let)\\s+'+name+'\\s*=\\s*)([\\s\\S]*?)(;\\s*\\n)');
+    var m=re.exec(out);if(!m)return;
+    out=out.substring(0,m.index)+m[1]+JSON.stringify(val)+';\n'+out.substring(m.index+m[0].length);
+  }
+  rv('BANNER_IMGS',D.banners);
+  rv('GALLERY_IMGS',D.gallery);
+  rv('GALLERY_CONCEPT_MAP',D.galMap);
+  rv('BABY_IMGS',D.babyImgs);
+  rv('THUMB_IMGS',D.thumbs);
+  rv('REVIEWS',D.reviews);
+  if(D.cPhotos.newborn)rv('NEWBORN_IMGS',D.cPhotos.newborn);
+  if(D.cPhotos.birthday)rv('BIRTHDAY_IMGS',D.cPhotos.birthday);
+  if(D.cPhotos.family)rv('FAMILY_IMGS',D.cPhotos.family);
+  if(D.cPhotos.kyyeu)rv('KYYEU_IMGS',D.cPhotos.kyyeu);
+  if(D.cPhotos.maternity)rv('MATERNITY_IMGS',D.cPhotos.maternity);
+
+  var cRe=/((?:const|var|let)\s+concepts\s*=\s*)([\s\S]*?)(;\s*\n)/;
+  var cM=cRe.exec(out);
+  if(cM)out=out.substring(0,cM.index)+cM[1]+JSON.stringify(D.concepts)+';\n'+out.substring(cM.index+cM[0].length);
+
+  var s=D.settings;
+  if(s.heroTitle)out=out.replace(/(<h1[^>]*>)([\s\S]*?)(<\/h1>)/,function(_,a,__,c){return a+s.heroTitle+'<br><em>'+(s.heroEm||'')+'</em>'+c;});
+  if(s.heroSub)out=out.replace(/(class="hero-sub"[^>]*>)([\s\S]*?)(<\/p>)/,function(_,a,__,c){return a+s.heroSub+c;});
+  if(s.phone){var pd=s.phone.replace(/\s/g,'');out=out.replace(/href="tel:\d+"/g,'href="tel:'+pd+'"');}
+  if(s.email){out=out.replace(/mailto:[\w@.]+/g,'mailto:'+s.email);}
+
+  var blob=new Blob([out],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  var mb=(blob.size/1024/1024).toFixed(2);
+  toast('Da tai index.html ('+mb+' MB)!','success');
+}
+
+// ═══ IMAGE COMPRESS ═══
+function compressImg(file,maxW,q,cb){
+  maxW=maxW||1200;q=q||0.8;
+  var r=new FileReader();
+  r.onload=function(e){
+    var img=new Image();
+    img.onload=function(){
+      var w=img.width,h=img.height;
+      if(w>maxW){h=Math.round(h*(maxW/w));w=maxW;}
+      var cv=document.createElement('canvas');cv.width=w;cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      var res=cv.toDataURL('image/webp',q);
+      if(res.length<100)res=cv.toDataURL('image/jpeg',q);
+      cb(res);
+    };
+    img.src=e.target.result;
+  };
+  r.readAsDataURL(file);
+}
+function compressMulti(files,maxW,q,cb){
+  var res=[],n=files.length;if(!n)return cb([]);
+  Array.from(files).forEach(function(f,i){compressImg(f,maxW,q,function(d){res[i]=d;n--;if(!n)cb(res);});});
+}
+function setupDrop(zId,fId,onF){
+  var z=document.getElementById(zId),inp=document.getElementById(fId);if(!z||!inp)return;
+  inp.onchange=function(){if(this.files.length)onF(this.files);this.value='';};
+  z.ondragover=function(e){e.preventDefault();z.classList.add('dragover');};
+  z.ondragleave=function(){z.classList.remove('dragover');};
+  z.ondrop=function(e){e.preventDefault();z.classList.remove('dragover');if(e.dataTransfer.files.length)onF(e.dataTransfer.files);};
+}
+
+// ═══ BANNERS ═══
+function renderBanners(){
+  var g=document.getElementById('bannerGrid');g.innerHTML='';
+  if(!D.banners.length){g.innerHTML='<div class="empty-state"><p>Chua co banner.</p></div>';return;}
+  D.banners.forEach(function(src,i){
+    var d=document.createElement('div');d.className='img-card';d.draggable=true;
+    d.innerHTML='<span class="img-card-order">'+(i+1)+'</span><img src="'+src+'">'
+      +'<div class="img-card-actions"><button class="btn-icon danger" onclick="event.stopPropagation();D.banners.splice('+i+',1);renderBanners();updateStats();">&#10005;</button></div>'
+      +'<div class="img-card-info">'+(Math.round(src.length*0.75/1024))+'KB</div>';
+    d.ondragstart=function(e){e.dataTransfer.setData('text',''+i);};
+    d.ondragover=function(e){e.preventDefault();};
+    d.ondrop=function(e){e.preventDefault();var f=+e.dataTransfer.getData('text');if(f!==i){var it=D.banners.splice(f,1)[0];D.banners.splice(i,0,it);renderBanners();}};
+    g.appendChild(d);
+  });
+}
+
+// ═══ GALLERY ═══
+function renderGallery(){
+  var g=document.getElementById('galleryGrid'),f=document.getElementById('galFilter').value;g.innerHTML='';
+  var items=[];
+  D.gallery.forEach(function(src,i){var c=D.galMap[i]||null;if(f==='all'||(f===''&&!c)||c===f)items.push({src:src,i:i,c:c});});
+  if(!items.length){g.innerHTML='<div class="empty-state"><p>Khong co anh.</p></div>';return;}
+  items.forEach(function(it){
+    var d=document.createElement('div');d.className='img-card';
+    d.innerHTML='<img src="'+it.src+'">'
       +'<div class="img-card-actions">'
-      +'<button class="btn-icon" onclick="changeGalConcept('+item.idx+')" title="Doi concept"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></button>'
-      +'<button class="btn-icon danger" onclick="deleteGallery('+item.idx+')" title="Xoa"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>'
-      +'</div>'
-      +badge;
-    grid.appendChild(d);
+      +'<button class="btn-icon" onclick="event.stopPropagation();chgConcept('+it.i+')">&#9881;</button>'
+      +'<button class="btn-icon danger" onclick="event.stopPropagation();D.gallery.splice('+it.i+',1);D.galMap.splice('+it.i+',1);renderGallery();updateStats();">&#10005;</button></div>'
+      +'<div class="img-card-info"><span>'+(Math.round(it.src.length*0.75/1024))+'KB</span>'
+      +(it.c?'<span class="img-card-concept">'+(CN[it.c]||it.c)+'</span>':'')+'</div>';
+    g.appendChild(d);
   });
 }
-
-function deleteGallery(i){
-  if(!confirm('Xoa anh nay khoi gallery?')) return;
-  DATA.gallery.splice(i,1);
-  DATA.galleryConceptMap.splice(i,1);
-  renderGallery();
-  updateCounts();
+function chgConcept(i){
+  var opts=['','newborn','baby','birthday','family','kyyeu','maternity'];
+  var labels=['0: Khong gan','1: NewBorn','2: Baby','3: Birthday','4: Gia dinh','5: Ky yeu','6: Me bau'];
+  var c=D.galMap[i]||'';
+  var r=prompt('Chon concept (nhap so 0-6):\n'+labels.map(function(l,j){return l+(opts[j]===c?' (*)':'');}).join('\n'));
+  if(r===null)return;var idx=+r;if(isNaN(idx)||idx<0||idx>=opts.length)return;
+  D.galMap[i]=opts[idx]||null;renderGallery();
 }
 
-function changeGalConcept(i){
-  var opts = ['','newborn','baby','birthday','family','kyyeu','maternity'];
-  var labels = ['Khong gan','NewBorn','Baby','Birthday','Gia dinh','Ky yeu','Me bau'];
-  var cur = DATA.galleryConceptMap[i] || '';
-  var choice = prompt('Chon concept (nhap so):\n'+labels.map(function(l,j){return j+': '+l+(opts[j]===cur?' (hien tai)':'');}).join('\n'));
-  if(choice===null) return;
-  var idx = parseInt(choice);
-  if(isNaN(idx)||idx<0||idx>=opts.length) return;
-  DATA.galleryConceptMap[i] = opts[idx] || null;
-  renderGallery();
-}
-
-// ─── CONCEPTS ───
-var currentConceptIdx = 0;
-
-function buildConceptTabs(){
-  var tabs = document.getElementById('conceptTabs');
-  tabs.innerHTML = '';
-  DATA.concepts.forEach(function(c,i){
-    var t = document.createElement('button');
-    t.className = 'tab'+(i===currentConceptIdx?' active':'');
-    t.textContent = c.emoji+' '+c.name;
-    t.onclick = function(){ currentConceptIdx=i; buildConceptTabs(); };
-    tabs.appendChild(t);
+// ═══ CONCEPTS ═══
+function buildCTabs(){
+  var t=document.getElementById('cTabs');t.innerHTML='';
+  D.concepts.forEach(function(c,i){
+    var b=document.createElement('button');b.className='tab'+(i===cIdx?' active':'');
+    b.textContent=(c.emoji||'')+' '+(c.name||'');
+    b.onclick=function(){readConceptEdits();cIdx=i;buildCTabs();};
+    t.appendChild(b);
   });
-  renderConceptEditor();
+  renderCEditor();
 }
-
 function readConceptEdits(){
-  var c = DATA.concepts[currentConceptIdx];
-  if(!c) return;
-  var el = document.getElementById('conceptEditor');
-  if(!el.querySelector('#ce-name')) return;
-  c.name = document.getElementById('ce-name').value || c.name;
-  c.emoji = document.getElementById('ce-emoji').value || c.emoji;
-  c.tagline = document.getElementById('ce-tagline').value || c.tagline;
-  c.meta1.val = document.getElementById('ce-meta1val').value || c.meta1.val;
-  c.meta1.lbl = document.getElementById('ce-meta1lbl').value || c.meta1.lbl;
-  c.meta2.val = document.getElementById('ce-meta2val').value || c.meta2.val;
-  c.meta2.lbl = document.getElementById('ce-meta2lbl').value || c.meta2.lbl;
-  c.priceIntro = document.getElementById('ce-priceIntro').value || c.priceIntro;
-  // Read pricing rows
-  var rows = document.querySelectorAll('.pr-row');
-  c.pricing = [];
-  rows.forEach(function(row){
-    var p = row.querySelector('.pr-p').value;
-    var v = row.querySelector('.pr-v').value;
-    var n = row.querySelector('.pr-n').value;
-    if(p && v) c.pricing.push({p:p, v:v, n:n, best: n.toLowerCase().indexOf('pho bien')!==-1});
-  });
+  var c=D.concepts[cIdx];if(!c)return;
+  var el=document.getElementById('ce-name');if(!el)return;
+  c.name=el.value||c.name;c.emoji=document.getElementById('ce-emoji').value||c.emoji;
+  c.tagline=document.getElementById('ce-tagline').value||c.tagline;
+  c.meta1={val:document.getElementById('ce-m1v').value,lbl:document.getElementById('ce-m1l').value};
+  c.meta2={val:document.getElementById('ce-m2v').value,lbl:document.getElementById('ce-m2l').value};
+  c.priceIntro=document.getElementById('ce-pi').value||c.priceIntro;
+  var rows=document.querySelectorAll('.pr-row');c.pricing=[];
+  rows.forEach(function(r){var p=r.querySelector('.pr-p').value,v=r.querySelector('.pr-v').value,n=r.querySelector('.pr-n').value;
+    if(p&&v)c.pricing.push({p:p,v:v,n:n,best:n.indexOf('phổ biến')>=0||n.toLowerCase().indexOf('pho bien')>=0});});
 }
-
-function renderConceptEditor(){
-  var c = DATA.concepts[currentConceptIdx];
-  if(!c){ document.getElementById('conceptEditor').innerHTML=''; return; }
-  var photoKey = c.id;
-  var photos = DATA.conceptPhotos[photoKey] || [];
-  var thumbSrc = DATA.thumbnails[c.id] || '';
-
-  var html = '<div class="card"><div class="card-header"><h3>'+c.emoji+' '+c.name+' — Thong tin co ban</h3></div><div class="card-body">'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">Ten concept</label><input class="form-input" id="ce-name" value="'+esc(c.name)+'"></div>'
+function renderCEditor(){
+  var c=D.concepts[cIdx];if(!c){document.getElementById('cEditor').innerHTML='';return;}
+  var photos=D.cPhotos[c.id]||[];var th=D.thumbs[c.id]||'';
+  var h='<div class="card"><div class="card-header"><h3>'+esc(c.emoji||'')+' '+esc(c.name||'')+'</h3></div><div class="card-body">'
+    +'<div class="form-row"><div class="form-group"><label class="form-label">Ten</label><input class="form-input" id="ce-name" value="'+esc(c.name)+'"></div>'
     +'<div class="form-group"><label class="form-label">Emoji</label><input class="form-input" id="ce-emoji" value="'+esc(c.emoji)+'"></div></div>'
     +'<div class="form-group"><label class="form-label">Tagline</label><input class="form-input" id="ce-tagline" value="'+esc(c.tagline)+'"></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">Meta 1 — Gia tri</label><input class="form-input" id="ce-meta1val" value="'+esc(c.meta1.val)+'"></div>'
-    +'<div class="form-group"><label class="form-label">Meta 1 — Nhan</label><input class="form-input" id="ce-meta1lbl" value="'+esc(c.meta1.lbl)+'"></div></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">Meta 2 — Gia tri</label><input class="form-input" id="ce-meta2val" value="'+esc(c.meta2.val)+'"></div>'
-    +'<div class="form-group"><label class="form-label">Meta 2 — Nhan</label><input class="form-input" id="ce-meta2lbl" value="'+esc(c.meta2.lbl)+'"></div></div>'
-    +'</div></div>';
+    +'<div class="form-row"><div class="form-group"><label class="form-label">Meta1 val</label><input class="form-input" id="ce-m1v" value="'+esc(c.meta1?c.meta1.val:'')+'"></div>'
+    +'<div class="form-group"><label class="form-label">Meta1 label</label><input class="form-input" id="ce-m1l" value="'+esc(c.meta1?c.meta1.lbl:'')+'"></div></div>'
+    +'<div class="form-row"><div class="form-group"><label class="form-label">Meta2 val</label><input class="form-input" id="ce-m2v" value="'+esc(c.meta2?c.meta2.val:'')+'"></div>'
+    +'<div class="form-group"><label class="form-label">Meta2 label</label><input class="form-input" id="ce-m2l" value="'+esc(c.meta2?c.meta2.lbl:'')+'"></div></div></div></div>';
 
-  // Thumbnail
-  html += '<div class="card"><div class="card-header"><h3>Anh thumbnail (card concept)</h3></div><div class="card-body">'
-    +(thumbSrc ? '<div style="margin-bottom:12px;"><img src="'+thumbSrc+'" style="max-width:200px;border-radius:10px;border:1px solid var(--border);"></div>' : '')
-    +'<div class="upload-zone" style="padding:20px;" onclick="document.getElementById(\'thumbFile\').click()">'
-    +'<p><strong>Click de chon anh thumbnail</strong></p>'
-    +'<input type="file" id="thumbFile" accept="image/*" onchange="uploadThumb(this.files)">'
-    +'</div></div></div>';
+  h+='<div class="card"><div class="card-header"><h3>Thumbnail</h3></div><div class="card-body">'
+    +(th?'<img src="'+th+'" style="max-width:180px;border-radius:8px;border:1px solid var(--border);margin-bottom:10px;display:block;">':'')
+    +'<div class="upload-zone" style="padding:16px;" onclick="document.getElementById(\'thFile\').click()"><p><strong>Chon anh</strong></p>'
+    +'<input type="file" id="thFile" accept="image/*" onchange="upThumb(this.files)" style="display:none"></div></div></div>';
 
-  // Concept Photos
-  html += '<div class="card"><div class="card-header"><h3>Anh trong popup concept</h3><button class="btn btn-primary btn-sm" onclick="document.getElementById(\'cpFile\').click()">+ Them anh</button></div>'
-    +'<div class="card-body"><input type="file" id="cpFile" multiple accept="image/*" style="display:none;" onchange="uploadConceptPhotos(this.files)">'
+  h+='<div class="card"><div class="card-header"><h3>Anh popup</h3><button class="btn btn-primary btn-sm" onclick="document.getElementById(\'cpFile\').click()">+ Them</button></div>'
+    +'<div class="card-body"><input type="file" id="cpFile" multiple accept="image/*" style="display:none" onchange="upCPhotos(this.files)">'
     +'<div class="concept-photo-grid" id="cpGrid">';
-  photos.forEach(function(p,i){
-    var src = typeof p==='string' ? p : (p.src||'');
-    html += '<div class="concept-photo-item"><img src="'+src+'"><button class="cp-del" onclick="deleteConceptPhoto('+i+')">&#10005;</button></div>';
-  });
-  if(!photos.length) html += '<div class="empty-state" style="grid-column:1/-1;"><p>Chua co anh. Them anh bang nut phia tren.</p></div>';
-  html += '</div></div></div>';
+  photos.forEach(function(p,i){var src=typeof p==='string'?p:(p.src||'');
+    h+='<div class="concept-photo-item"><img src="'+src+'"><button class="cp-del" onclick="delCPhoto('+i+')">&#10005;</button></div>';});
+  if(!photos.length)h+='<div class="empty-state" style="grid-column:1/-1"><p>Chua co anh</p></div>';
+  h+='</div></div></div>';
 
-  // Pricing
-  html += '<div class="card"><div class="card-header"><h3>Bang gia</h3><button class="btn btn-primary btn-sm" onclick="addPricingRow()">+ Them dong</button></div><div class="card-body">'
-    +'<div class="form-group"><label class="form-label">Mo ta gia</label><input class="form-input" id="ce-priceIntro" value="'+esc(c.priceIntro)+'"></div>'
-    +'<div style="margin-bottom:8px;"><div class="pricing-row"><span style="font-size:10px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;">So anh</span><span style="font-size:10px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;">Gia</span><span style="font-size:10px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;">Ghi chu</span><span></span></div></div>'
-    +'<div id="pricingRows">';
-  c.pricing.forEach(function(r,i){
-    html += '<div class="pricing-row pr-row"><input class="form-input pr-p" value="'+esc(r.p)+'">'
-      +'<input class="form-input pr-v" value="'+esc(r.v)+'">'
-      +'<input class="form-input pr-n" value="'+esc(r.n)+'">'
-      +'<button class="btn-icon danger" onclick="this.closest(\'.pr-row\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
-  });
-  html += '</div></div></div>';
-
-  document.getElementById('conceptEditor').innerHTML = html;
+  h+='<div class="card"><div class="card-header"><h3>Bang gia</h3><button class="btn btn-primary btn-sm" onclick="addPRow()">+ Them</button></div><div class="card-body">'
+    +'<div class="form-group"><label class="form-label">Mo ta</label><input class="form-input" id="ce-pi" value="'+esc(c.priceIntro)+'"></div><div id="pRows">';
+  (c.pricing||[]).forEach(function(r){
+    h+='<div class="pricing-row pr-row"><input class="form-input pr-p" value="'+esc(r.p)+'"><input class="form-input pr-v" value="'+esc(r.v)+'"><input class="form-input pr-n" value="'+esc(r.n)+'">'
+      +'<button class="btn-icon danger" onclick="this.closest(\'.pr-row\').remove()">&#10005;</button></div>';});
+  h+='</div></div></div>';
+  document.getElementById('cEditor').innerHTML=h;
 }
+function addPRow(){var c=document.getElementById('pRows');var d=document.createElement('div');d.className='pricing-row pr-row';
+  d.innerHTML='<input class="form-input pr-p" placeholder="So anh"><input class="form-input pr-v" placeholder="Gia"><input class="form-input pr-n" placeholder="Ghi chu"><button class="btn-icon danger" onclick="this.closest(\'.pr-row\').remove()">&#10005;</button>';c.appendChild(d);}
+function upThumb(files){if(!files.length)return;compressImg(files[0],600,0.85,function(d){D.thumbs[D.concepts[cIdx].id]=d;renderCEditor();toast('Thumbnail OK!','success');});}
+function upCPhotos(files){if(!files.length)return;var id=D.concepts[cIdx].id;if(!D.cPhotos[id])D.cPhotos[id]=[];
+  compressMulti(files,1000,0.8,function(res){res.forEach(function(s){D.cPhotos[id].push({src:s,h:160});});renderCEditor();updateStats();toast(res.length+' anh da them!','success');});}
+function delCPhoto(i){if(!confirm('Xoa?'))return;D.cPhotos[D.concepts[cIdx].id].splice(i,1);renderCEditor();}
 
-function addPricingRow(){
-  var container = document.getElementById('pricingRows');
-  var row = document.createElement('div');
-  row.className = 'pricing-row pr-row';
-  row.innerHTML = '<input class="form-input pr-p" placeholder="VD: 10 anh retouch"><input class="form-input pr-v" placeholder="VD: 2.000.000"><input class="form-input pr-n" placeholder="Ghi chu"><button class="btn-icon danger" onclick="this.closest(\'.pr-row\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';
-  container.appendChild(row);
-}
-
-function uploadThumb(files){
-  if(!files.length) return;
-  readFiles(files, function(results){
-    var c = DATA.concepts[currentConceptIdx];
-    DATA.thumbnails[c.id] = results[0];
-    renderConceptEditor();
-    showToast('Da cap nhat thumbnail!','success');
-  });
-}
-
-function uploadConceptPhotos(files){
-  if(!files.length) return;
-  readFiles(files, function(results){
-    var c = DATA.concepts[currentConceptIdx];
-    if(!DATA.conceptPhotos[c.id]) DATA.conceptPhotos[c.id] = [];
-    results.forEach(function(src){
-      DATA.conceptPhotos[c.id].push({src:src, h:160});
-    });
-    renderConceptEditor();
-    showToast('Da them '+results.length+' anh!','success');
-  });
-}
-
-function deleteConceptPhoto(i){
-  if(!confirm('Xoa anh nay?')) return;
-  var c = DATA.concepts[currentConceptIdx];
-  DATA.conceptPhotos[c.id].splice(i,1);
-  renderConceptEditor();
-}
-
-// ─── REVIEWS ───
+// ═══ REVIEWS ═══
 function renderReviews(){
-  var body = document.getElementById('reviewBody');
-  body.innerHTML = '';
-  if(!DATA.reviews.length){
-    body.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--ink-muted);padding:30px;">Chua co review nao.</td></tr>';
-    return;
-  }
-  DATA.reviews.forEach(function(r,i){
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td><strong>'+esc(r.name)+'</strong></td><td>'+esc(r.concept)+'</td><td style="max-width:300px;font-size:11px;color:var(--ink-mid);line-height:1.6;">'+esc(r.text).substring(0,100)+(r.text.length>100?'...':'')+'</td>'
+  var b=document.getElementById('reviewBody');b.innerHTML='';
+  if(!D.reviews.length){b.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--ink-muted);padding:24px;">Chua co review.</td></tr>';return;}
+  D.reviews.forEach(function(r,i){var tr=document.createElement('tr');
+    tr.innerHTML='<td><strong>'+esc(r.name)+'</strong></td><td>'+esc(r.concept)+'</td>'
+      +'<td style="max-width:220px;font-size:10px;color:var(--ink-mid);line-height:1.5;">'+esc(r.text).substring(0,80)+'</td>'
       +'<td class="stars">'+'&#9733;'.repeat(r.stars||5)+'</td>'
-      +'<td><div style="display:flex;gap:4px;"><button class="btn-icon" onclick="openReviewModal('+i+')" title="Sua"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>'
-      +'<button class="btn-icon danger" onclick="deleteReview('+i+')" title="Xoa"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button></div></td>';
-    body.appendChild(tr);
-  });
+      +'<td><div style="display:flex;gap:4px;"><button class="btn-icon" onclick="openReviewModal('+i+')">&#9998;</button>'
+      +'<button class="btn-icon danger" onclick="if(confirm(\'Xoa?\')){D.reviews.splice('+i+',1);renderReviews();updateStats();}">&#10005;</button></div></td>';
+    b.appendChild(tr);});
 }
-
-function deleteReview(i){
-  if(!confirm('Xoa review nay?')) return;
-  DATA.reviews.splice(i,1);
-  renderReviews();
-  updateCounts();
-}
-
-var editingReviewIdx = -1;
+var rvIdx=-1;
 function openReviewModal(idx){
-  editingReviewIdx = (idx!==undefined) ? idx : -1;
-  var r = editingReviewIdx>=0 ? DATA.reviews[editingReviewIdx] : {name:'',concept:'',text:'',stars:5};
-  document.getElementById('modalTitle').textContent = editingReviewIdx>=0 ? 'Sua review' : 'Them review';
-  document.getElementById('modalBody').innerHTML =
-    '<div class="form-group"><label class="form-label">Ten khach hang</label><input class="form-input" id="rv-name" value="'+esc(r.name)+'"></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">Concept</label><input class="form-input" id="rv-concept" value="'+esc(r.concept)+'"></div>'
-    +'<div class="form-group"><label class="form-label">So sao (1-5)</label><input class="form-input" id="rv-stars" type="number" min="1" max="5" value="'+(r.stars||5)+'"></div></div>'
-    +'<div class="form-group"><label class="form-label">Noi dung danh gia</label><textarea class="form-input" id="rv-text" rows="4">'+esc(r.text)+'</textarea></div>';
-  document.getElementById('modalFoot').innerHTML = '<button class="btn btn-secondary" onclick="closeModal()">Huy</button><button class="btn btn-primary" onclick="saveReview()">Luu</button>';
+  rvIdx=idx!==undefined?idx:-1;var r=rvIdx>=0?D.reviews[rvIdx]:{name:'',concept:'',text:'',stars:5};
+  document.getElementById('modalTitle').textContent=rvIdx>=0?'Sua review':'Them review';
+  document.getElementById('modalBody').innerHTML=
+    '<div class="form-group"><label class="form-label">Ten</label><input class="form-input" id="rv-n" value="'+esc(r.name)+'"></div>'
+    +'<div class="form-row"><div class="form-group"><label class="form-label">Concept</label><input class="form-input" id="rv-c" value="'+esc(r.concept)+'"></div>'
+    +'<div class="form-group"><label class="form-label">Sao (1-5)</label><input class="form-input" id="rv-s" type="number" min="1" max="5" value="'+(r.stars||5)+'"></div></div>'
+    +'<div class="form-group"><label class="form-label">Noi dung</label><textarea class="form-input" id="rv-t" rows="3">'+esc(r.text)+'</textarea></div>';
+  document.getElementById('modalFoot').innerHTML='<button class="btn btn-secondary" onclick="closeModal()">Huy</button><button class="btn btn-primary" onclick="saveReview()">Luu</button>';
   document.getElementById('modalOv').classList.add('show');
 }
+function saveReview(){var r={name:document.getElementById('rv-n').value.trim(),concept:document.getElementById('rv-c').value.trim(),
+  text:document.getElementById('rv-t').value.trim(),stars:+document.getElementById('rv-s').value||5};
+  if(!r.name||!r.text){alert('Nhap ten va noi dung!');return;}
+  if(rvIdx>=0)D.reviews[rvIdx]=r;else D.reviews.push(r);closeModal();renderReviews();updateStats();toast('OK!','success');}
 
-function saveReview(){
-  var r = {
-    name: document.getElementById('rv-name').value.trim(),
-    concept: document.getElementById('rv-concept').value.trim(),
-    text: document.getElementById('rv-text').value.trim(),
-    stars: parseInt(document.getElementById('rv-stars').value)||5
-  };
-  if(!r.name||!r.text){ alert('Vui long nhap ten va noi dung!'); return; }
-  if(editingReviewIdx>=0){
-    DATA.reviews[editingReviewIdx] = r;
-  } else {
-    DATA.reviews.push(r);
-  }
-  closeModal();
-  renderReviews();
-  updateCounts();
-  showToast(editingReviewIdx>=0?'Da cap nhat review!':'Da them review moi!','success');
+// ═══ SETTINGS ═══
+function fillSettings(){var s=D.settings;
+  document.getElementById('sHeroTitle').value=s.heroTitle||'';document.getElementById('sHeroEm').value=s.heroEm||'';
+  document.getElementById('sHeroSub').value=s.heroSub||'';document.getElementById('sPhone').value=s.phone||'';
+  document.getElementById('sEmail').value=s.email||'';document.getElementById('sAddress').value=s.address||'';
+  document.getElementById('sFb').value=s.fb||'';document.getElementById('sTk').value=s.tk||'';}
+function readSettingsForm(){var s=D.settings;s.heroTitle=document.getElementById('sHeroTitle').value;s.heroEm=document.getElementById('sHeroEm').value;
+  s.heroSub=document.getElementById('sHeroSub').value;s.phone=document.getElementById('sPhone').value;s.email=document.getElementById('sEmail').value;
+  s.address=document.getElementById('sAddress').value;s.fb=document.getElementById('sFb').value;s.tk=document.getElementById('sTk').value;}
+
+// ═══ UTILS ═══
+function closeModal(){document.getElementById('modalOv').classList.remove('show');}
+function toast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+(type||'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='toast';},4000);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function updateStats(){
+  var bn=D.banners.length,gn=D.gallery.length,rn=D.reviews.length,cn=D.concepts.length;
+  document.getElementById('nbBanner').textContent=bn;document.getElementById('nbGallery').textContent=gn;
+  document.getElementById('nbReview').textContent=rn;document.getElementById('nbConcept').textContent=cn;
+  document.getElementById('sBanner').textContent=bn;document.getElementById('sGallery').textContent=gn;
+  document.getElementById('sReview').textContent=rn;document.getElementById('sConcept').textContent=cn;
+  var bytes=JSON.stringify(D).length;var mb=(bytes/1024/1024).toFixed(2);
+  var pct=Math.min(100,Math.round(bytes/1024/1024/30*100));
+  document.getElementById('sizeUsed').textContent=mb+' MB';
+  document.getElementById('sizeBarFill').style.width=pct+'%';
+  document.getElementById('sizeBarFill').style.background=pct>80?'var(--red)':pct>50?'#ff9800':'var(--rose)';
+  document.getElementById('sizePercent').textContent=pct+'%';
+  document.getElementById('sizeInfo').textContent=mb+' MB / 30MB';
 }
 
-function closeModal(){
-  document.getElementById('modalOv').classList.remove('show');
-}
-
-// ─── TOAST ───
-function showToast(msg, type){
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show '+(type||'');
-  clearTimeout(t._timer);
-  t._timer = setTimeout(function(){ t.className='toast'; }, 3000);
-}
-
-// ─── HELPER ───
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-// ─── INIT ───
-loadData();
-
-// If concepts empty, load defaults
-if(!DATA.concepts || !DATA.concepts.length){
-  DATA.concepts = [
-    {id:'newborn',num:'01',name:'NewBorn',thumb:'c1',emoji:'\u{1F338}',tagline:'"Nhung ngay dau tien — nho be, ky dieu, va mai mai"',meta1:{val:'7–14',lbl:'ngay tuoi'},meta2:{val:'2–3h',lbl:'thoi gian chup'},priceIntro:'Gia tinh theo so anh retouch hoan chinh.',pricing:[{p:'5 anh retouch',v:'1.200.000 ₫',n:'Luu ky niem'},{p:'10 anh retouch',v:'2.000.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'3.500.000 ₫',n:'Tron ven nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]},
-    {id:'birthday',num:'02',name:'Birthday',thumb:'c2',emoji:'\u{1F382}',tagline:'"Mot tuoi, mot nu cuoi, mot cau chuyen bat dau"',meta1:{val:'1–3',lbl:'tuoi phu hop'},meta2:{val:'1–2h',lbl:'thoi gian chup'},priceIntro:'Bao gom props sinh nhat co ban.',pricing:[{p:'5 anh retouch',v:'1.000.000 ₫',n:'Goi nho gon'},{p:'10 anh retouch',v:'1.800.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'3.200.000 ₫',n:'Tron ven nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]},
-    {id:'family',num:'03',name:'Gia dinh',thumb:'c3',emoji:'\u{1F3E1}',tagline:'"O day co tinh yeu — va no trong nhu the nay"',meta1:{val:'2–6',lbl:'thanh vien'},meta2:{val:'1–2h',lbl:'thoi gian chup'},priceIntro:'Phu hop gia dinh nho den nhieu the he.',pricing:[{p:'5 anh retouch',v:'1.000.000 ₫',n:'Gia dinh nho'},{p:'10 anh retouch',v:'1.800.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'3.000.000 ₫',n:'Day du nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]},
-    {id:'maternity',num:'04',name:'Me bau',thumb:'c4',emoji:'\u{1F337}',tagline:'"Truoc khi gap con, me da yeu con roi"',meta1:{val:'28–34',lbl:'tuan thai'},meta2:{val:'1–2h',lbl:'thoi gian chup'},priceIntro:'Ton vinh ve dep me bau.',pricing:[{p:'5 anh retouch',v:'1.200.000 ₫',n:'Luu ky niem'},{p:'10 anh retouch',v:'2.000.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'3.500.000 ₫',n:'Day du nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]},
-    {id:'kyyeu',num:'05',name:'Ky yeu',thumb:'c5',emoji:'\u{1F393}',tagline:'"Tuoi tho qua di — nhung ky uc thi o lai"',meta1:{val:'Moi',lbl:'do tuoi'},meta2:{val:'1–2h',lbl:'thoi gian chup'},priceIntro:'Danh cho lop hoc, nhom ban hoac ca nhan.',pricing:[{p:'5 anh retouch',v:'800.000 ₫',n:'Moi hoc sinh'},{p:'10 anh retouch',v:'1.400.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'2.500.000 ₫',n:'Tron ven nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]},
-    {id:'baby',num:'06',name:'Baby',thumb:'c6',emoji:'\u{1F37C}',tagline:'"Be lon tung ngay — moi khoang khac deu xung dang duoc luu giu"',meta1:{val:'1–12',lbl:'thang tuoi'},meta2:{val:'1–2h',lbl:'thoi gian chup'},priceIntro:'Goi chup be tu 1–12 thang tuoi.',pricing:[{p:'5 anh retouch',v:'1.000.000 ₫',n:'Luu cot moc'},{p:'10 anh retouch',v:'1.800.000 ₫',n:'Pho bien nhat',best:true},{p:'20 anh retouch',v:'3.200.000 ₫',n:'Tron ven nhat'},{p:'Toan bo anh goc',v:'+ 500.000 ₫',n:'Bo sung them'}]}
-  ];
-}
-if(!DATA.reviews || !DATA.reviews.length){
-  DATA.reviews = [
-    {text:'Gia dinh minh rat hai long voi buoi chup! Nhiep anh vien rat kien nhan voi be, anh ra sieu xiu va chan that.',name:'Chi Lan Anh',concept:'NewBorn',stars:5},
-    {text:'Concept Birthday cho cu Jin cuc ky de thuong, props dep, khong gian thoai mai. Se quay lai lan sau!',name:'Chi Minh Trang',concept:'Birthday',stars:5},
-    {text:'Anh gia dinh minh lan nay dep hon mong doi rat nhieu. Nhiep anh vien bat duoc nhung khoang khac tu nhien nhat.',name:'Anh Tuan',concept:'Gia dinh',stars:5},
-    {text:'Chup me bau o day that su tuyet voi. Cam on studio da cho minh nhung buc anh ky niem dep nhat cuoc doi.',name:'Chi Thu Ha',concept:'Me bau',stars:5}
-  ];
-}
-if(!DATA.thumbnails) DATA.thumbnails = {};
-if(!DATA.conceptPhotos) DATA.conceptPhotos = {};
-
-populateSettingsForm();
-updateCounts();
-
-// Setup upload zones
-setupDropZone('bannerUpload','bannerFile',function(files){
-  readFiles(files, function(results){
-    DATA.banners = DATA.banners.concat(results);
-    renderBanners();
-    updateCounts();
-    showToast('Da them '+results.length+' banner!','success');
-  });
-});
-
-setupDropZone('galleryUpload','galleryFile',function(files){
-  var concept = document.getElementById('galUploadConcept').value || null;
-  readFiles(files, function(results){
-    results.forEach(function(src){
-      DATA.gallery.push(src);
-      DATA.galleryConceptMap.push(concept);
-    });
-    renderGallery();
-    updateCounts();
-    showToast('Da them '+results.length+' anh vao gallery!','success');
-  });
-});
-
-buildCards();
-function buildCards(){}
-
+// ═══ INIT ═══
+setupDrop('bannerUpload','bannerFile',function(files){
+  compressMulti(files,1200,0.8,function(res){D.banners=D.banners.concat(res);renderBanners();updateStats();toast(res.length+' banner da them!','success');});});
+setupDrop('galleryUpload','galleryFile',function(files){
+  var concept=document.getElementById('galUpConcept').value||null;
+  compressMulti(files,1200,0.8,function(res){res.forEach(function(s){D.gallery.push(s);D.galMap.push(concept);});renderGallery();updateStats();toast(res.length+' anh da them!','success');});});
 </script>
 </body>
 </html>
