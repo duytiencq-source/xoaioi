@@ -115,6 +115,12 @@ textarea.form-input{resize:vertical;min-height:70px;}
 .empty-state{text-align:center;padding:32px 20px;color:var(--ink-muted);}
 .empty-state p{font-size:12px;font-weight:300;}
 
+.img-card-check{position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.85);border:2px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;transition:all .15s;z-index:2;}
+.img-card-check:hover{border-color:var(--rose);}
+.img-card-check.checked{background:var(--rose);border-color:var(--rose);color:#fff;}
+.bulk-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:10px 14px;background:var(--rose-light);border:1px solid var(--rose-mid);border-radius:10px;}
+.bulk-bar span{font-size:11px;color:var(--rose-dark);font-weight:600;}
+
 .import-zone{border:3px dashed var(--rose-mid);border-radius:16px;padding:60px 30px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);max-width:600px;margin:80px auto;}
 .import-zone:hover,.import-zone.dragover{border-color:var(--rose);background:var(--rose-light);}
 .import-zone h2{font-size:18px;color:var(--ink);margin:16px 0 8px;}
@@ -216,6 +222,11 @@ textarea.form-input{resize:vertical;min-height:70px;}
             <p>Keo anh vao hoac <strong>click de chon</strong> (1200x500px khuyen nghi)</p>
             <input type="file" id="bannerFile" multiple accept="image/*">
           </div>
+          <div class="bulk-bar" id="bannerBulk" style="display:none;margin-top:14px;">
+            <button class="btn btn-sm btn-secondary" onclick="toggleAllBanners()">Chon tat ca</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteSelectedBanners()">Xoa da chon</button>
+            <span id="bannerSelCount">0 da chon</span>
+          </div>
           <div class="img-grid" id="bannerGrid" style="margin-top:14px;"></div>
         </div>
       </div>
@@ -247,6 +258,11 @@ textarea.form-input{resize:vertical;min-height:70px;}
           <div class="upload-zone" id="galleryUpload" onclick="document.getElementById('galleryFile').click()">
             <p>Keo anh vao hoac <strong>click de chon</strong></p>
             <input type="file" id="galleryFile" multiple accept="image/*">
+          </div>
+          <div class="bulk-bar" id="galleryBulk" style="display:none;margin-top:14px;">
+            <button class="btn btn-sm btn-secondary" onclick="toggleAllGallery()">Chon tat ca</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteSelectedGallery()">Xoa da chon</button>
+            <span id="gallerySelCount">0 da chon</span>
           </div>
           <div class="img-grid" id="galleryGrid" style="margin-top:14px;"></div>
         </div>
@@ -468,12 +484,15 @@ function setupDrop(zId,fId,onF){
 }
 
 // ═══ BANNERS ═══
+var bannerSel=new Set();
 function renderBanners(){
   var g=document.getElementById('bannerGrid');g.innerHTML='';
+  bannerSel.clear();updateBannerBulk();
   if(!D.banners.length){g.innerHTML='<div class="empty-state"><p>Chua co banner.</p></div>';return;}
   D.banners.forEach(function(src,i){
     var d=document.createElement('div');d.className='img-card';d.draggable=true;
-    d.innerHTML='<span class="img-card-order">'+(i+1)+'</span><img src="'+src+'">'
+    d.innerHTML='<div class="img-card-check" data-bi="'+i+'" onclick="event.stopPropagation();toggleBannerSel('+i+',this)">&#10003;</div>'
+      +'<img src="'+src+'">'
       +'<div class="img-card-actions"><button class="btn-icon danger" onclick="event.stopPropagation();D.banners.splice('+i+',1);renderBanners();updateStats();">&#10005;</button></div>'
       +'<div class="img-card-info">'+(Math.round(src.length*0.75/1024))+'KB</div>';
     d.ondragstart=function(e){e.dataTransfer.setData('text',''+i);};
@@ -482,16 +501,25 @@ function renderBanners(){
     g.appendChild(d);
   });
 }
+function toggleBannerSel(i,el){if(bannerSel.has(i)){bannerSel.delete(i);el.classList.remove('checked');}else{bannerSel.add(i);el.classList.add('checked');}updateBannerBulk();}
+function updateBannerBulk(){var n=bannerSel.size;document.getElementById('bannerBulk').style.display=n>0?'flex':'none';document.getElementById('bannerSelCount').textContent=n+' da chon';}
+function toggleAllBanners(){if(bannerSel.size===D.banners.length){bannerSel.clear();}else{for(var i=0;i<D.banners.length;i++)bannerSel.add(i);}
+  document.querySelectorAll('#bannerGrid .img-card-check').forEach(function(el){var i=+el.dataset.bi;if(bannerSel.has(i))el.classList.add('checked');else el.classList.remove('checked');});updateBannerBulk();}
+function deleteSelectedBanners(){if(!bannerSel.size)return;if(!confirm('Xoa '+bannerSel.size+' banner?'))return;
+  var arr=Array.from(bannerSel).sort(function(a,b){return b-a;});arr.forEach(function(i){D.banners.splice(i,1);});renderBanners();updateStats();toast(arr.length+' banner da xoa!','success');}
 
 // ═══ GALLERY ═══
+var galSel=new Set();
 function renderGallery(){
   var g=document.getElementById('galleryGrid'),f=document.getElementById('galFilter').value;g.innerHTML='';
+  galSel.clear();updateGalleryBulk();
   var items=[];
   D.gallery.forEach(function(src,i){var c=D.galMap[i]||null;if(f==='all'||(f===''&&!c)||c===f)items.push({src:src,i:i,c:c});});
   if(!items.length){g.innerHTML='<div class="empty-state"><p>Khong co anh.</p></div>';return;}
   items.forEach(function(it){
     var d=document.createElement('div');d.className='img-card';
-    d.innerHTML='<img src="'+it.src+'">'
+    d.innerHTML='<div class="img-card-check" data-gi="'+it.i+'" onclick="event.stopPropagation();toggleGalSel('+it.i+',this)">&#10003;</div>'
+      +'<img src="'+it.src+'">'
       +'<div class="img-card-actions">'
       +'<button class="btn-icon" onclick="event.stopPropagation();chgConcept('+it.i+')">&#9881;</button>'
       +'<button class="btn-icon danger" onclick="event.stopPropagation();D.gallery.splice('+it.i+',1);D.galMap.splice('+it.i+',1);renderGallery();updateStats();">&#10005;</button></div>'
@@ -500,6 +528,13 @@ function renderGallery(){
     g.appendChild(d);
   });
 }
+function toggleGalSel(i,el){if(galSel.has(i)){galSel.delete(i);el.classList.remove('checked');}else{galSel.add(i);el.classList.add('checked');}updateGalleryBulk();}
+function updateGalleryBulk(){var n=galSel.size;document.getElementById('galleryBulk').style.display=n>0?'flex':'none';document.getElementById('gallerySelCount').textContent=n+' da chon';}
+function toggleAllGallery(){var checks=document.querySelectorAll('#galleryGrid .img-card-check');
+  if(galSel.size===checks.length){galSel.clear();}else{checks.forEach(function(el){galSel.add(+el.dataset.gi);});}
+  checks.forEach(function(el){if(galSel.has(+el.dataset.gi))el.classList.add('checked');else el.classList.remove('checked');});updateGalleryBulk();}
+function deleteSelectedGallery(){if(!galSel.size)return;if(!confirm('Xoa '+galSel.size+' anh?'))return;
+  var arr=Array.from(galSel).sort(function(a,b){return b-a;});arr.forEach(function(i){D.gallery.splice(i,1);D.galMap.splice(i,1);});renderGallery();updateStats();toast(arr.length+' anh da xoa!','success');}
 function chgConcept(i){
   var opts=['','newborn','baby','birthday','family','kyyeu','maternity'];
   var labels=['0: Khong gan','1: NewBorn','2: Baby','3: Birthday','4: Gia dinh','5: Ky yeu','6: Me bau'];
