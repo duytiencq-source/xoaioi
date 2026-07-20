@@ -302,7 +302,26 @@ textarea.form-input{resize:vertical;min-height:70px;}
     <!-- REVIEWS -->
     <div class="section-panel" id="sec-reviews">
       <div class="card">
-        <div class="card-header"><h3>Danh gia khach hang</h3><button class="btn btn-primary btn-sm" onclick="openReviewModal()">+ Them</button></div>
+        <div class="card-header"><h3>Anh feedback that (Slideshow)</h3></div>
+        <div class="card-body">
+          <div class="gallery-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Neu co it nhat 1 anh o day, trang chu se hien thi slideshow anh nay THAY THE cho cac the danh gia van ban ben duoi. Xoa het anh de quay lai hien thi danh gia van ban.</span>
+          </div>
+          <div class="upload-zone" id="rvImgUpload" onclick="document.getElementById('rvImgFile').click()">
+            <p>Keo anh chup man hinh feedback vao hoac <strong>click de chon</strong></p>
+            <input type="file" id="rvImgFile" multiple accept="image/*">
+          </div>
+          <div class="bulk-bar" id="rvImgBulk" style="display:none;margin-top:14px;">
+            <button class="btn btn-sm btn-secondary" onclick="toggleAllRvImg()">Chon tat ca</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteSelectedRvImg()">Xoa da chon</button>
+            <span id="rvImgSelCount">0 da chon</span>
+          </div>
+          <div class="img-grid" id="rvImgGrid" style="margin-top:14px;"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Danh gia khach hang (van ban - du phong)</h3><button class="btn btn-primary btn-sm" onclick="openReviewModal()">+ Them</button></div>
         <div class="card-body no-pad">
           <table class="data-table"><thead><tr><th>Ten</th><th>Concept</th><th>Noi dung</th><th>Sao</th><th style="width:70px"></th></tr></thead>
           <tbody id="reviewBody"></tbody></table>
@@ -350,7 +369,7 @@ textarea.form-input{resize:vertical;min-height:70px;}
 
 <script>
 var SRC='';
-var D={banners:[],gallery:[],galMap:[],concepts:[],reviews:[],thumbs:{},cPhotos:{},babyImgs:[],settings:{}};
+var D={banners:[],gallery:[],galMap:[],concepts:[],reviews:[],reviewImgs:[],thumbs:{},cPhotos:{},babyImgs:[],settings:{}};
 var cIdx=0;
 var CN={newborn:'NewBorn',baby:'Baby',birthday:'Birthday',family:'Gia dinh',kyyeu:'Ky yeu',maternity:'Me bau'};
 
@@ -363,7 +382,7 @@ function go(el,sec){
   document.getElementById('pageTitle').textContent=titles[sec]||sec;
   document.querySelector('.sidebar').classList.remove('open');
   if(sec==='banners')renderBanners();if(sec==='gallery')renderGallery();
-  if(sec==='concepts')buildCTabs();if(sec==='reviews')renderReviews();if(sec==='settings')fillSettings();
+  if(sec==='concepts')buildCTabs();if(sec==='reviews'){renderReviews();renderRvImgGrid();}if(sec==='settings')fillSettings();
 }
 
 // ═══ IMPORT ═══
@@ -412,6 +431,7 @@ function parseSource(src){
   D.babyImgs=ex('BABY_IMGS')||[];
   D.thumbs=ex('THUMB_IMGS')||{};
   D.reviews=ex('REVIEWS')||[];
+  D.reviewImgs=ex('REVIEW_IMGS')||[];
   var cp;
   cp=ex('NEWBORN_IMGS');if(cp)D.cPhotos.newborn=cp;
   cp=ex('BIRTHDAY_IMGS');if(cp)D.cPhotos.birthday=cp;
@@ -453,6 +473,7 @@ function exportFile(){
   rv('BABY_IMGS',D.babyImgs);
   rv('THUMB_IMGS',D.thumbs);
   rv('REVIEWS',D.reviews);
+  rv('REVIEW_IMGS',D.reviewImgs);
   if(D.cPhotos.newborn)rv('NEWBORN_IMGS',D.cPhotos.newborn);
   if(D.cPhotos.birthday)rv('BIRTHDAY_IMGS',D.cPhotos.birthday);
   if(D.cPhotos.family)rv('FAMILY_IMGS',D.cPhotos.family);
@@ -531,6 +552,32 @@ function toggleAllBanners(){if(bannerSel.size===D.banners.length){bannerSel.clea
   document.querySelectorAll('#bannerGrid .img-card-check').forEach(function(el){var i=+el.dataset.bi;if(bannerSel.has(i))el.classList.add('checked');else el.classList.remove('checked');});updateBannerBulk();}
 function deleteSelectedBanners(){if(!bannerSel.size)return;if(!confirm('Xoa '+bannerSel.size+' banner?'))return;
   var arr=Array.from(bannerSel).sort(function(a,b){return b-a;});arr.forEach(function(i){D.banners.splice(i,1);});renderBanners();updateStats();toast(arr.length+' banner da xoa!','success');}
+
+// ═══ REVIEW IMAGES (feedback that - slideshow) ═══
+var rvImgSel=new Set();
+function renderRvImgGrid(){
+  var g=document.getElementById('rvImgGrid');if(!g)return;g.innerHTML='';
+  rvImgSel.clear();updateRvImgBulk();
+  if(!D.reviewImgs.length){g.innerHTML='<div class="empty-state"><p>Chua co anh feedback. Danh gia van ban se duoc hien thi tren web.</p></div>';return;}
+  D.reviewImgs.forEach(function(src,i){
+    var d=document.createElement('div');d.className='img-card';d.draggable=true;
+    d.innerHTML='<div class="img-card-check" data-ri="'+i+'" onclick="event.stopPropagation();toggleRvImgSel('+i+',this)">&#10003;</div>'
+      +'<img src="'+src+'">'
+      +'<div class="img-card-actions"><button class="btn-icon danger" onclick="event.stopPropagation();D.reviewImgs.splice('+i+',1);renderRvImgGrid();">&#10005;</button></div>'
+      +'<div class="img-card-info">'+(Math.round(src.length*0.75/1024))+'KB</div>';
+    d.ondragstart=function(e){e.dataTransfer.setData('text',''+i);};
+    d.ondragover=function(e){e.preventDefault();};
+    d.ondrop=function(e){e.preventDefault();var f=+e.dataTransfer.getData('text');if(f!==i){var it=D.reviewImgs.splice(f,1)[0];D.reviewImgs.splice(i,0,it);renderRvImgGrid();}};
+    g.appendChild(d);
+  });
+}
+function toggleRvImgSel(i,el){if(rvImgSel.has(i)){rvImgSel.delete(i);el.classList.remove('checked');}else{rvImgSel.add(i);el.classList.add('checked');}updateRvImgBulk();}
+function updateRvImgBulk(){var n=rvImgSel.size;var b=document.getElementById('rvImgBulk');if(b)b.style.display=n>0?'flex':'none';var c=document.getElementById('rvImgSelCount');if(c)c.textContent=n+' da chon';}
+function toggleAllRvImg(){var checks=document.querySelectorAll('#rvImgGrid .img-card-check');
+  if(rvImgSel.size===checks.length){rvImgSel.clear();}else{checks.forEach(function(el){rvImgSel.add(+el.dataset.ri);});}
+  checks.forEach(function(el){if(rvImgSel.has(+el.dataset.ri))el.classList.add('checked');else el.classList.remove('checked');});updateRvImgBulk();}
+function deleteSelectedRvImg(){if(!rvImgSel.size)return;if(!confirm('Xoa '+rvImgSel.size+' anh?'))return;
+  var arr=Array.from(rvImgSel).sort(function(a,b){return b-a;});arr.forEach(function(i){D.reviewImgs.splice(i,1);});renderRvImgGrid();toast(arr.length+' anh da xoa!','success');}
 
 // ═══ GALLERY ═══
 var galSel=new Set();
@@ -701,6 +748,8 @@ function updateStats(){
 // ═══ INIT ═══
 setupDrop('bannerUpload','bannerFile',function(files){
   compressMulti(files,1200,0.8,function(res){D.banners=D.banners.concat(res);renderBanners();updateStats();toast(res.length+' banner da them!','success');});});
+setupDrop('rvImgUpload','rvImgFile',function(files){
+  compressMulti(files,1400,0.85,function(res){D.reviewImgs=D.reviewImgs.concat(res);renderRvImgGrid();toast(res.length+' anh feedback da them!','success');});});
 setupDrop('galleryUpload','galleryFile',function(files){
   var concept=document.getElementById('galUpConcept').value||null;
   compressMulti(files,1200,0.8,function(res){res.forEach(function(s){D.gallery.push(s);D.galMap.push(concept);});renderGallery();updateStats();toast(res.length+' anh da them!','success');});});
