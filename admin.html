@@ -39,6 +39,7 @@ body{font-family:'Montserrat',sans-serif;background:#f5f0ed;color:var(--ink);dis
 .btn-primary{background:var(--rose);color:#fff;}.btn-primary:hover{background:var(--rose-dark);}
 .btn-secondary{background:#fff;color:var(--ink-mid);border:1px solid var(--border);}.btn-secondary:hover{background:var(--rose-light);}
 .btn-success{background:var(--green);color:#fff;}.btn-success:hover{background:#388e3c;}
+.btn-danger{background:var(--red);color:#fff;}.btn-danger:hover{background:#c62828;}
 .btn-sm{padding:7px 12px;font-size:9px;}
 .btn-icon{width:32px;height:32px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;border:1px solid var(--border);cursor:pointer;color:var(--ink-soft);transition:all .15s;}
 .btn-icon:hover{background:var(--rose-light);color:var(--rose);border-color:var(--rose-mid);}
@@ -59,7 +60,6 @@ body{font-family:'Montserrat',sans-serif;background:#f5f0ed;color:var(--ink);dis
 .img-card:hover .img-card-actions{opacity:1;}
 .img-card-info{padding:6px 10px;font-size:9px;color:var(--ink-muted);display:flex;justify-content:space-between;align-items:center;}
 .img-card-order{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-weight:700;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
-.img-card-concept{background:var(--rose-light);color:var(--rose);font-weight:600;font-size:9px;padding:2px 8px;border-radius:4px;}
 
 .upload-zone{border:2px dashed var(--border);border-radius:12px;padding:32px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);}
 .upload-zone:hover,.upload-zone.dragover{border-color:var(--rose);background:var(--rose-light);}
@@ -118,7 +118,13 @@ textarea.form-input{resize:vertical;min-height:70px;}
 .img-card-check{position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.85);border:2px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;transition:all .15s;z-index:2;}
 .img-card-check:hover{border-color:var(--rose);}
 .img-card-check.checked{background:var(--rose);border-color:var(--rose);color:#fff;}
-.bulk-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:10px 14px;background:var(--rose-light);border:1px solid var(--rose-mid);border-radius:10px;}
+
+.img-card.img-card-warn{border-color:#f0ad4e;box-shadow:0 0 0 1px #f0ad4e inset;}
+.img-card-concept-select{width:100%;border:none;border-top:1px solid var(--border-soft);background:#fff;color:var(--ink-mid);font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:600;padding:6px 8px;outline:none;cursor:pointer;}
+.img-card-concept-select.unset{background:#fff6e8;color:#a5690a;}
+.gallery-note{display:flex;gap:8px;align-items:flex-start;background:#fff6e8;border:1px solid #f0ad4e;color:#8a5a00;font-size:11px;line-height:1.6;padding:10px 14px;border-radius:10px;margin-bottom:14px;}
+.gallery-note svg{width:15px;height:15px;flex-shrink:0;margin-top:1px;}
+.bulk-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:10px 14px;background:var(--rose-light);border:1px solid var(--rose-mid);border-radius:10px;flex-wrap:wrap;}
 .bulk-bar span{font-size:11px;color:var(--rose-dark);font-weight:600;}
 
 .import-zone{border:3px dashed var(--rose-mid);border-radius:16px;padding:60px 30px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);max-width:600px;margin:80px auto;}
@@ -191,6 +197,10 @@ textarea.form-input{resize:vertical;min-height:70px;}
         <div class="stat-card"><div class="stat-num" id="sConcept">6</div><div class="stat-lbl">Concepts</div></div>
         <div class="stat-card"><div class="stat-num" id="sReview">0</div><div class="stat-lbl">Reviews</div></div>
       </div>
+      <div class="gallery-note" id="dashUnclassifiedNote" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span><strong id="dashUnclassifiedCount">0</strong> anh trong Gallery chua duoc gan concept - se KHONG hien thi tren trang chu. Vao muc <strong>Gallery</strong> de gan concept cho cac anh nay.</span>
+      </div>
       <div class="card">
         <div class="card-header"><h3>Dung luong file</h3></div>
         <div class="card-body">
@@ -238,21 +248,28 @@ textarea.form-input{resize:vertical;min-height:70px;}
         <div class="card-header">
           <h3>Thu vien anh</h3>
           <select class="form-input" id="galFilter" style="width:auto;padding:7px 12px;font-size:10px;" onchange="renderGallery()">
-            <option value="all">Tat ca</option>
-            <option value="newborn">NewBorn</option><option value="baby">Baby</option>
-            <option value="birthday">Birthday</option><option value="family">Gia dinh</option>
-            <option value="kyyeu">Ky yeu</option><option value="maternity">Me bau</option>
-            <option value="">Chua phan loai</option>
+            <option value="all">Xem tat ca</option>
+            <option value="newborn">🌸 NewBorn</option><option value="baby">🍼 Baby</option>
+            <option value="birthday">🎂 Birthday</option><option value="family">🏡 Gia dinh</option>
+            <option value="kyyeu">🎓 Ky yeu</option><option value="maternity">🌷 Me bau</option>
+            <option value="">⚠ Chua phan loai</option>
           </select>
         </div>
         <div class="card-body">
+          <div class="gallery-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Trang chu (index.html) khong con tab "Tat ca" - moi anh <strong>phai duoc gan concept</strong> thi moi hien thi len website. Anh dang "Chua phan loai" se bi an hoan toan, hay chon concept ngay ben duoi moi anh.</span>
+          </div>
           <div style="margin-bottom:10px;">
             <label class="form-label">Concept cho anh moi upload:</label>
             <select class="form-input" id="galUpConcept" style="width:auto;padding:7px 12px;font-size:10px;">
-              <option value="">Khong gan</option>
-              <option value="newborn">NewBorn</option><option value="baby">Baby</option>
-              <option value="birthday">Birthday</option><option value="family">Gia dinh</option>
-              <option value="kyyeu">Ky yeu</option><option value="maternity">Me bau</option>
+              <option value="newborn">🌸 NewBorn</option>
+              <option value="baby">🍼 Baby</option>
+              <option value="birthday">🎂 Birthday</option>
+              <option value="family">🏡 Gia dinh</option>
+              <option value="kyyeu">🎓 Ky yeu</option>
+              <option value="maternity">🌷 Me bau</option>
+              <option value="">— Khong gan (se bi an tren web) —</option>
             </select>
           </div>
           <div class="upload-zone" id="galleryUpload" onclick="document.getElementById('galleryFile').click()">
@@ -261,6 +278,13 @@ textarea.form-input{resize:vertical;min-height:70px;}
           </div>
           <div class="bulk-bar" id="galleryBulk" style="display:none;margin-top:14px;">
             <button class="btn btn-sm btn-secondary" onclick="toggleAllGallery()">Chon tat ca</button>
+            <select class="form-input" id="bulkConceptSel" style="width:auto;padding:6px 10px;font-size:9px;">
+              <option value="">Gan concept cho da chon...</option>
+              <option value="newborn">🌸 NewBorn</option><option value="baby">🍼 Baby</option>
+              <option value="birthday">🎂 Birthday</option><option value="family">🏡 Gia dinh</option>
+              <option value="kyyeu">🎓 Ky yeu</option><option value="maternity">🌷 Me bau</option>
+            </select>
+            <button class="btn btn-sm btn-secondary" onclick="applyBulkConcept()">Ap dung</button>
             <button class="btn btn-sm btn-danger" onclick="deleteSelectedGallery()">Xoa da chon</button>
             <span id="gallerySelCount">0 da chon</span>
           </div>
@@ -510,6 +534,13 @@ function deleteSelectedBanners(){if(!bannerSel.size)return;if(!confirm('Xoa '+ba
 
 // ═══ GALLERY ═══
 var galSel=new Set();
+var CE={newborn:'🌸',baby:'🍼',birthday:'🎂',family:'🏡',kyyeu:'🎓',maternity:'🌷'};
+var CONCEPT_ORDER=['newborn','baby','birthday','family','kyyeu','maternity'];
+function conceptOptionsHtml(sel){
+  var h='<option value=""'+(!sel?' selected':'')+'>— Chua gan —</option>';
+  CONCEPT_ORDER.forEach(function(id){h+='<option value="'+id+'"'+(sel===id?' selected':'')+'>'+CE[id]+' '+CN[id]+'</option>';});
+  return h;
+}
 function renderGallery(){
   var g=document.getElementById('galleryGrid'),f=document.getElementById('galFilter').value;g.innerHTML='';
   galSel.clear();updateGalleryBulk();
@@ -517,16 +548,23 @@ function renderGallery(){
   D.gallery.forEach(function(src,i){var c=D.galMap[i]||null;if(f==='all'||(f===''&&!c)||c===f)items.push({src:src,i:i,c:c});});
   if(!items.length){g.innerHTML='<div class="empty-state"><p>Khong co anh.</p></div>';return;}
   items.forEach(function(it){
-    var d=document.createElement('div');d.className='img-card';
+    var d=document.createElement('div');d.className='img-card'+(it.c?'':' img-card-warn');
     d.innerHTML='<div class="img-card-check" data-gi="'+it.i+'" onclick="event.stopPropagation();toggleGalSel('+it.i+',this)">&#10003;</div>'
       +'<img src="'+it.src+'">'
       +'<div class="img-card-actions">'
-      +'<button class="btn-icon" onclick="event.stopPropagation();chgConcept('+it.i+')">&#9881;</button>'
       +'<button class="btn-icon danger" onclick="event.stopPropagation();D.gallery.splice('+it.i+',1);D.galMap.splice('+it.i+',1);renderGallery();updateStats();">&#10005;</button></div>'
-      +'<div class="img-card-info"><span>'+(Math.round(it.src.length*0.75/1024))+'KB</span>'
-      +(it.c?'<span class="img-card-concept">'+(CN[it.c]||it.c)+'</span>':'')+'</div>';
+      +'<select class="img-card-concept-select'+(it.c?'':' unset')+'" onclick="event.stopPropagation()" onchange="setConcept('+it.i+',this.value)">'+conceptOptionsHtml(it.c)+'</select>'
+      +'<div class="img-card-info"><span>'+(Math.round(it.src.length*0.75/1024))+'KB</span></div>';
     g.appendChild(d);
   });
+}
+function setConcept(i,val){D.galMap[i]=val||null;renderGallery();}
+function applyBulkConcept(){
+  if(!galSel.size){toast('Chua chon anh nao!','error');return;}
+  var v=document.getElementById('bulkConceptSel').value;
+  if(!v){toast('Hay chon 1 concept de ap dung!','error');return;}
+  galSel.forEach(function(i){D.galMap[i]=v;});
+  renderGallery();toast('Da gan concept cho '+galSel.size+' anh!','success');
 }
 function toggleGalSel(i,el){if(galSel.has(i)){galSel.delete(i);el.classList.remove('checked');}else{galSel.add(i);el.classList.add('checked');}updateGalleryBulk();}
 function updateGalleryBulk(){var n=galSel.size;document.getElementById('galleryBulk').style.display=n>0?'flex':'none';document.getElementById('gallerySelCount').textContent=n+' da chon';}
@@ -535,14 +573,6 @@ function toggleAllGallery(){var checks=document.querySelectorAll('#galleryGrid .
   checks.forEach(function(el){if(galSel.has(+el.dataset.gi))el.classList.add('checked');else el.classList.remove('checked');});updateGalleryBulk();}
 function deleteSelectedGallery(){if(!galSel.size)return;if(!confirm('Xoa '+galSel.size+' anh?'))return;
   var arr=Array.from(galSel).sort(function(a,b){return b-a;});arr.forEach(function(i){D.gallery.splice(i,1);D.galMap.splice(i,1);});renderGallery();updateStats();toast(arr.length+' anh da xoa!','success');}
-function chgConcept(i){
-  var opts=['','newborn','baby','birthday','family','kyyeu','maternity'];
-  var labels=['0: Khong gan','1: NewBorn','2: Baby','3: Birthday','4: Gia dinh','5: Ky yeu','6: Me bau'];
-  var c=D.galMap[i]||'';
-  var r=prompt('Chon concept (nhap so 0-6):\n'+labels.map(function(l,j){return l+(opts[j]===c?' (*)':'');}).join('\n'));
-  if(r===null)return;var idx=+r;if(isNaN(idx)||idx<0||idx>=opts.length)return;
-  D.galMap[i]=opts[idx]||null;renderGallery();
-}
 
 // ═══ CONCEPTS ═══
 function buildCTabs(){
@@ -656,6 +686,9 @@ function updateStats(){
   document.getElementById('nbReview').textContent=rn;document.getElementById('nbConcept').textContent=cn;
   document.getElementById('sBanner').textContent=bn;document.getElementById('sGallery').textContent=gn;
   document.getElementById('sReview').textContent=rn;document.getElementById('sConcept').textContent=cn;
+  var unc=D.galMap.filter(function(c,i){return i<gn&&!c;}).length;
+  var noteEl=document.getElementById('dashUnclassifiedNote');
+  if(noteEl){noteEl.style.display=unc>0?'flex':'none';document.getElementById('dashUnclassifiedCount').textContent=unc;}
   var bytes=JSON.stringify(D).length;var mb=(bytes/1024/1024).toFixed(2);
   var pct=Math.min(100,Math.round(bytes/1024/1024/30*100));
   document.getElementById('sizeUsed').textContent=mb+' MB';
